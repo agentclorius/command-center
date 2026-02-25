@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returna Resale Economics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #222;
+        }
+        h1 { font-size: 3rem; margin-bottom: 30px; color: #4ade80; }
+        h2 { font-size: 2.2rem; margin-bottom: 40px; color: #4ade80; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 1.1rem; }
+        th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #1a1a1a; color: #4ade80; }
+        .amount { font-family: 'SF Mono', Monaco, monospace; text-align: right; }
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+        .highlight { background: #1e3a2f; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 30px 0; }
+        .model-box {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 35px;
+            border: 2px solid #333;
+        }
+        .model-box.recommended { border-color: #4ade80; }
+        .model-box h3 { color: #fff; margin-bottom: 25px; font-size: 1.4rem; }
+        .model-box.recommended h3 { color: #4ade80; }
+        .result { font-size: 2.2rem; font-weight: 700; margin-top: 15px; }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: #166534;
+            color: #4ade80;
+            margin-left: 10px;
+        }
+        .subtitle { font-size: 1.3rem; color: #94a3b8; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #4ade80; margin-bottom: 20px; }
+        .split-bar {
+            display: flex;
+            height: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+        .split-bar > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+        @media print { .slide { page-break-after: always; min-height: auto; padding: 40px; } }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title + Services -->
+<div class="slide">
+    <div class="logo">RETURNA</div>
+    <h1>Device Resale Economics</h1>
+    
+    <h3 style="color: #94a3b8; margin: 40px 0 20px;">Service Costs (per device)</h3>
+    <table>
+        <tr><td>📦 Shipping (out + return)</td><td class="amount">€100</td></tr>
+        <tr><td>🔒 Data Erasure</td><td class="amount">€25</td></tr>
+        <tr><td>🔍 Diagnostics</td><td class="amount">€15</td></tr>
+        <tr class="highlight"><td><strong>Total</strong></td><td class="amount"><strong>€140</strong></td></tr>
+    </table>
+    
+    <h3 style="color: #94a3b8; margin: 40px 0 20px;">Optional Repairs</h3>
+    <table>
+        <tr><td>🔋 Battery</td><td class="amount">€40-80</td></tr>
+        <tr><td>💻 Top Cover Skin / Keyboard Print</td><td class="amount">€50-100</td></tr>
+        <tr><td>🖥️ LCD Screen</td><td class="amount">€80-200</td></tr>
+    </table>
+</div>
+
+<!-- Slide 2: Model Comparison -->
+<div class="slide">
+    <h2>Two Models — €500 Device</h2>
+    
+    <div class="comparison-grid">
+        <div class="model-box">
+            <h3>Hub Buyback</h3>
+            <table>
+                <tr><td>Services</td><td class="amount negative">-€140</td></tr>
+                <tr><td>Buyback price</td><td class="amount">+€175</td></tr>
+                <tr><td>Returna fee (10%)</td><td class="amount negative">-€17.50</td></tr>
+                <tr class="highlight"><td><strong>Enterprise Net</strong></td><td class="amount result">+€17.50</td></tr>
+            </table>
+        </div>
+        
+        <div class="model-box recommended">
+            <h3>Marketplace <span class="tag">RECOMMENDED</span></h3>
+            <table>
+                <tr><td>Services</td><td class="amount negative">-€140</td></tr>
+                <tr><td>Sale proceeds (62%)</td><td class="amount positive">+€310</td></tr>
+                <tr><td></td><td></td></tr>
+                <tr class="highlight"><td><strong>Enterprise Net</strong></td><td class="amount result positive">+€170</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <p style="text-align: center; font-size: 1.3rem; margin-top: 30px;">
+        Enterprise gets <strong style="color: #4ade80;">10x more</strong> with marketplace model
+    </p>
+</div>
+
+<!-- Slide 3: Revenue Split -->
+<div class="slide">
+    <h2>Marketplace Split</h2>
+    
+    <div class="split-bar">
+        <div style="width: 62%; background: #4ade80;">Enterprise 62%</div>
+        <div style="width: 16%; background: #60a5fa;">Hub 16%</div>
+        <div style="width: 12%; background: #fbbf24;">Market 12%</div>
+        <div style="width: 10%; background: #a78bfa;">Returna 10%</div>
+    </div>
+    
+    <table style="margin-top: 50px;">
+        <tr><th>Party</th><th>%</th><th>Amount</th><th>Role</th></tr>
+        <tr><td>Enterprise</td><td>62%</td><td class="amount positive">€310</td><td>Device owner</td></tr>
+        <tr><td>Return Hub</td><td>16%</td><td class="amount">€80</td><td>Processing & fulfillment</td></tr>
+        <tr><td>Marketplace</td><td>12%</td><td class="amount">€60</td><td>Sales channel</td></tr>
+        <tr><td>Returna</td><td>10%</td><td class="amount">€50</td><td>Platform & listing</td></tr>
+    </table>
+</div>
+
+<!-- Slide 4: Example with Repair -->
+<div class="slide">
+    <h2>With Repair — Damaged Device</h2>
+    <p class="subtitle" style="margin-bottom: 40px;">Grade C laptop → Grade B with top cover skin / keyboard print</p>
+    
+    <div class="comparison-grid">
+        <div class="model-box">
+            <h3>Hub Buyback</h3>
+            <table>
+                <tr><td>Services</td><td class="amount negative">-€140</td></tr>
+                <tr><td>Buyback (as-is)</td><td class="amount">+€50</td></tr>
+                <tr><td>Returna fee</td><td class="amount negative">-€5</td></tr>
+                <tr class="highlight"><td><strong>Enterprise Net</strong></td><td class="amount result negative">-€95</td></tr>
+            </table>
+            <p style="color: #f87171; margin-top: 20px;">❌ Enterprise loses money</p>
+        </div>
+        
+        <div class="model-box recommended">
+            <h3>Marketplace + Repair</h3>
+            <table>
+                <tr><td>Services</td><td class="amount negative">-€140</td></tr>
+                <tr><td>Top cover skin</td><td class="amount negative">-€30</td></tr>
+                <tr><td>Sale proceeds (62%)</td><td class="amount positive">+€310</td></tr>
+                <tr class="highlight"><td><strong>Enterprise Net</strong></td><td class="amount result positive">+€140</td></tr>
+            </table>
+            <p style="color: #4ade80; margin-top: 20px;">✓ Enterprise gains €140</p>
+        </div>
+    </div>
+    
+    <p style="text-align: center; font-size: 1.5rem; margin-top: 40px;">
+        Difference: <strong style="color: #4ade80;">€235</strong>
+    </p>
+</div>
+
+</body>
+</html>
