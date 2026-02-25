@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Hub Network — Pipeline</title>
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-dark: #064e3b;
+            --accent: #10b981;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--primary-dark);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: white;
+        }
+        
+        /* Main Content */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .stat-card.highlight {
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card.highlight .stat-label {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-card.highlight .stat-value {
+            color: white;
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .filter-group select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Table */
+        .table-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .table-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        
+        tr:hover td {
+            background: var(--bg-light);
+        }
+        
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-yellow { background: #fef3c7; color: #92400e; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-gray { background: #f1f5f9; color: #475569; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        
+        /* Score */
+        .score {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .score-bar {
+            width: 60px;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .score-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+        
+        .score-high .score-fill { background: var(--success); }
+        .score-medium .score-fill { background: var(--warning); }
+        .score-low .score-fill { background: var(--danger); }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            color: var(--primary);
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://returna.com/wp-content/uploads/2023/09/returna-logo-web-white.png" alt="Returna">
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Pipeline</a>
+            <a href="#">Coverage Map</a>
+            <a href="#">Onboarding</a>
+            <a href="#">Settings</a>
+        </nav>
+    </header>
+    
+    <main class="main">
+        <h1 class="page-title">Return Hub Network</h1>
+        <p class="page-subtitle">Partner Acquisition Pipeline</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card highlight">
+                <div class="stat-label">Total Prospects</div>
+                <div class="stat-value">43</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🟢 Priority (80+)</div>
+                <div class="stat-value">12</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Countries Covered</div>
+                <div class="stat-value">14</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Avg Score</div>
+                <div class="stat-value">74</div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active">All Prospects</div>
+            <div class="tab">By Region</div>
+            <div class="tab">Disqualified</div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>Status:</label>
+                <select>
+                    <option>All</option>
+                    <option>Researching</option>
+                    <option>Outreach</option>
+                    <option>In Conversation</option>
+                    <option>Onboarding</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Region:</label>
+                <select>
+                    <option>All Regions</option>
+                    <option>Nordics</option>
+                    <option>UK & Ireland</option>
+                    <option>DACH</option>
+                    <option>Western Europe</option>
+                    <option>North America</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Score:</label>
+                <select>
+                    <option>All</option>
+                    <option>80+ (Priority)</option>
+                    <option>60-79</option>
+                    <option>Below 60</option>
+                </select>
+            </div>
+            <button class="btn btn-outline">🗺️ View Map</button>
+            <button class="btn btn-primary">+ Add Prospect</button>
+        </div>
+        
+        <div class="table-container">
+            <div class="table-header">
+                <span class="table-title">Pipeline (43 prospects)</span>
+                <button class="btn btn-outline">Export CSV</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Country</th>
+                        <th>Status</th>
+                        <th>Score</th>
+                        <th>Size</th>
+                        <th>Certifications</th>
+                        <th>Next Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Swiss Remarketing AG</strong></td>
+                        <td>🇨🇭 Switzerland</td>
+                        <td><span class="badge badge-blue">Researching</span></td>
+                        <td>
+                            <div class="score score-high">
+                                <span>85</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                            </div>
+                        </td>
+                        <td>50-100</td>
+                        <td>R2, ISO 14001</td>
+                        <td>Find contact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EasyRecycle ApS</strong></td>
+                        <td>🇩🇰 Denmark</td>
+                        <td><span class="badge badge-yellow">Outreach</span></td>
+                        <td>
+                            <div class="score score-high">
+                                <span>85</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                            </div>
+                        </td>
+                        <td>20-50</td>
+                        <td>ISO 27001, ISO 14001</td>
+                        <td>Kasper to call</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Synetic Technologies</strong></td>
+                        <td>🇺🇸 USA</td>
+                        <td><span class="badge badge-blue">Researching</span></td>
+                        <td>
+                            <div class="score score-high">
+                                <span>85</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                            </div>
+                        </td>
+                        <td>100-200</td>
+                        <td>R2, e-Stewards</td>
+                        <td>Contact Todd Leach</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EURATECH GmbH</strong></td>
+                        <td>🇩🇪 Germany</td>
+                        <td><span class="badge badge-blue">Researching</span></td>
+                        <td>
+                            <div class="score score-high">
+                                <span>82</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
+                            </div>
+                        </td>
+                        <td>50-100</td>
+                        <td>ISO 14001</td>
+                        <td>Find contact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Remade Group AB</strong></td>
+                        <td>🇸🇪 Sweden</td>
+                        <td><span class="badge badge-green">In Conversation</span></td>
+                        <td>
+                            <div class="score score-high">
+                                <span>82</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
+                            </div>
+                        </td>
+                        <td>50-100</td>
+                        <td>ISO 14001, ISO 27001</td>
+                        <td>Schedule call</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vyta</strong></td>
+                        <td>🇮🇪 Ireland</td>
+                        <td><span class="badge badge-blue">Researching</span></td>
+                        <td>
+                            <div class="score score-medium">
+                                <span>78</span>
+                                <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+                            </div>
+                        </td>
+                        <td>100-200</td>
+                        <td>R2, ADISA</td>
+                        <td>Email Philip</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <footer class="footer">
+            Last updated: February 16, 2026 • Returna ApS
+        </footer>
+    </main>
+</body>
+</html>
