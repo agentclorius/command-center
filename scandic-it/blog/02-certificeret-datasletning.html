@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificeret Datasletning: Hvad kræver GDPR? | Scandic IT</title>
+    <meta name="description" content="Lær forskellen på formatering og certificeret datasletning. Se hvad GDPR kræver, hvilke metoder der bruges, og hvordan du får dokumentation der holder ved audit.">
+    <meta name="keywords" content="datasletning, certificeret datasletning, GDPR, NIST 800-88, harddisk sletning, sikker sletning, databeskyttelse">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --gray-700: #334155;
+            --gray-500: #64748b;
+            --gray-300: #cbd5e1;
+            --gray-100: #f1f5f9;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--gray-700);
+            line-height: 1.8;
+            background: var(--white);
+        }
+
+        .header {
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--gray-300); }
+
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .meta {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .category {
+            background: var(--danger);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+            height: 300px;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 2.5rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 2rem 0 0.75rem;
+        }
+
+        p { margin-bottom: 1.25rem; }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .comparison-table th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .comparison-table .check { color: var(--success); }
+        .comparison-table .cross { color: var(--danger); }
+
+        .highlight-box {
+            background: var(--gray-100);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .danger-box {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: var(--gray-100);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .method-card h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .method-card .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag-green { background: #d1fae5; color: #065f46; }
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-red { background: #fee2e2; color: #b91c1c; }
+
+        .gdpr-box {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .gdpr-box h3 {
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .gdpr-box ul {
+            margin-bottom: 0;
+        }
+
+        .gdpr-box li {
+            color: var(--gray-300);
+        }
+
+        .cta-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .checklist {
+            background: #d1fae5;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .checklist h4 {
+            color: #065f46;
+            margin-bottom: 1rem;
+        }
+
+        .checklist ul {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding-left: 1.5rem;
+            position: relative;
+            color: #065f46;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-100);
+            margin-top: 3rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .method-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">Scandic<span>IT</span></a>
+        </div>
+    </header>
+
+    <article class="article">
+        <div class="meta">
+            <span class="category">Datasikkerhed</span>
+            <span>19. februar 2026 · 10 min læsetid</span>
+        </div>
+
+        <h1>Certificeret Datasletning: Hvad kræver GDPR — og hvordan gør du det rigtigt?</h1>
+
+        <p class="lead">
+            At slette en fil er ikke det samme som at fjerne den. Når en medarbejder afleverer sin computer, kan følsomme data stadig genskabes — med alvorlige konsekvenser for din virksomhed. Her er hvad du skal vide om certificeret datasletning.
+        </p>
+
+        <div class="featured-image">🔒</div>
+
+        <h2>Problemet: Sletning er ikke sletning</h2>
+
+        <p>
+            Når du sletter en fil på din computer — eller endda formaterer hele harddisken — fjerner du faktisk ikke dataene. Du fjerner bare referencen til dem. Dataene ligger stadig på disken og kan genskabes med let tilgængelige værktøjer.
+        </p>
+
+        <div class="danger-box">
+            <strong>⚠️ Skræmmende statistik:</strong> En undersøgelse af 200 brugte harddiske købt online viste, at 67% stadig indeholdt genskabelige data — herunder medicinske journaler, finansielle oplysninger og personlige fotos.
+        </div>
+
+        <p>
+            For virksomheder er konsekvenserne alvorlige. Udtjent hardware, der sælges eller bortskaffes uden korrekt datasletning, kan føre til:
+        </p>
+
+        <ul>
+            <li>Databrud og lækage af kundeoplysninger</li>
+            <li>Overtrædelse af GDPR med bøder op til €20 millioner</li>
+            <li>Omdømmeskade og tab af kundetillid</li>
+            <li>Risiko for industrispionage</li>
+        </ul>
+
+        <h2>Hvad kræver GDPR?</h2>
+
+        <div class="gdpr-box">
+            <h3>GDPR Artikel 17: "Retten til at blive glemt"</h3>
+            <p>GDPR stiller klare krav til, hvordan persondata skal håndteres — også når udstyr tages ud af drift:</p>
+            <ul>
+                <li>Data skal slettes "uden unødig forsinkelse" når de ikke længere er nødvendige</li>
+                <li>Sletningen skal være <strong>irreversibel</strong> — data må ikke kunne genskabes</li>
+                <li>Du skal kunne <strong>dokumentere</strong> at sletningen er sket korrekt</li>
+                <li>Processen skal være <strong>konsistent og repeterbar</strong></li>
+            </ul>
+        </div>
+
+        <p>
+            Det afgørende ord er <strong>irreversibel</strong>. En simpel formatering opfylder ikke dette krav. Du har brug for en metode, der overskriver data på en måde, så de ikke kan genskabes — og du har brug for dokumentation, der beviser det.
+        </p>
+
+        <h2>Formatering vs. certificeret sletning</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metode</th>
+                    <th>Fjerner data?</th>
+                    <th>GDPR-compliant?</th>
+                    <th>Dokumentation?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Slet filer</strong></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Tøm papirkurv</strong></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Formatér disk</strong></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Factory reset</strong></td>
+                    <td><span class="cross">❌ Delvist</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                    <td><span class="cross">❌ Nej</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Certificeret sletning</strong></td>
+                    <td><span class="check">✓ Ja</span></td>
+                    <td><span class="check">✓ Ja</span></td>
+                    <td><span class="check">✓ Ja</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Fysisk destruktion</strong></td>
+                    <td><span class="check">✓ Ja</span></td>
+                    <td><span class="check">✓ Ja</span></td>
+                    <td><span class="check">✓ Ja</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Metoder til sikker datasletning</h2>
+
+        <div class="method-grid">
+            <div class="method-card">
+                <span class="tag tag-green">Anbefalet</span>
+                <h4>Software-baseret overskrivning</h4>
+                <p>Data overskrives med tilfældige mønstre flere gange. Følger standarder som NIST 800-88 eller DoD 5220.22-M. Enheden kan genbruges efterfølgende.</p>
+            </div>
+            <div class="method-card">
+                <span class="tag tag-blue">For SSD/NVMe</span>
+                <h4>Cryptographic Erase</h4>
+                <p>Krypteringsnøglen destrueres, hvilket gør alle data ulæselige. Hurtig og effektiv metode til moderne SSD-drev.</p>
+            </div>
+            <div class="method-card">
+                <span class="tag tag-red">Maksimal sikkerhed</span>
+                <h4>Fysisk destruktion</h4>
+                <p>Drevet shreddes eller degausses (afmagnetiseres). Bruges når data er særligt følsomme, eller drevet er defekt.</p>
+            </div>
+            <div class="method-card">
+                <span class="tag tag-blue">Mobilenheder</span>
+                <h4>Mobile Device Wipe</h4>
+                <p>Specialiseret software til smartphones og tablets, der sikrer komplet sletning inklusiv interne chips.</p>
+            </div>
+        </div>
+
+        <h2>NIST 800-88: Den gyldne standard</h2>
+
+        <p>
+            <strong>NIST Special Publication 800-88</strong> er den mest anerkendte internationale standard for datasletning. Udgivet af det amerikanske National Institute of Standards and Technology, definerer den tre niveauer af sletning:
+        </p>
+
+        <div class="highlight-box">
+            <h4>Clear</h4>
+            <p>Grundlæggende overskrivning der beskytter mod simple genskabelsesværktøjer. Egnet til lavrisiko-data.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h4>Purge</h4>
+            <p>Avanceret sletning der beskytter mod laboratorieangreb. Standard for de fleste virksomheder. Inkluderer cryptographic erase for SSD.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h4>Destroy</h4>
+            <p>Fysisk destruktion af mediet. Påkrævet for klassificerede data eller når andre metoder ikke er mulige.</p>
+        </div>
+
+        <p>
+            For de fleste virksomheder er <strong>Purge</strong>-niveauet tilstrækkeligt og anbefalet. Det giver høj sikkerhed samtidig med at enheden kan genbruges.
+        </p>
+
+        <h2>Hvad skal dokumentationen indeholde?</h2>
+
+        <p>
+            Ved en GDPR-audit skal du kunne fremvise dokumentation for, at persondata er slettet korrekt. En certificeret datasletningsrapport bør indeholde:
+        </p>
+
+        <div class="checklist">
+            <h4>✓ Tjekliste for datasletningsrapport</h4>
+            <ul>
+                <li>Enhedens serienummer og model</li>
+                <li>Dato og tidspunkt for sletning</li>
+                <li>Anvendt metode og standard (fx NIST 800-88 Purge)</li>
+                <li>Software og version brugt til sletningen</li>
+                <li>Resultat: bestået/fejlet</li>
+                <li>Tekniker/operatør der udførte sletningen</li>
+                <li>Digital signatur eller certificering</li>
+            </ul>
+        </div>
+
+        <p>
+            Denne dokumentation skal opbevares i minimum 5 år og kunne fremvises ved forespørgsel fra Datatilsynet eller ved audit.
+        </p>
+
+        <h2>DIY eller professionel partner?</h2>
+
+        <p>
+            Kan du selv udføre certificeret datasletning? Teknisk set ja — der findes software som DBAN og Blancco, som du kan købe. Men der er flere overvejelser:
+        </p>
+
+        <div class="warning-box">
+            <strong>Overvej før du gør det selv:</strong>
+            <ul style="margin-bottom: 0;">
+                <li>Har du tid til at slette hver enhed manuelt? (Det tager 1-4 timer per enhed)</li>
+                <li>Har du ekspertise til at håndtere fejl og edge cases?</li>
+                <li>Kan du udstede certificeret dokumentation der holder ved audit?</li>
+                <li>Hvem verificerer at processen er udført korrekt?</li>
+            </ul>
+        </div>
+
+        <p>
+            For de fleste virksomheder er en professionel ITAD-partner den sikreste og mest effektive løsning. Du får:
+        </p>
+
+        <ul>
+            <li><strong>Ekspertise</strong> — håndtering af alle enheds- og disktyper</li>
+            <li><strong>Skalerbarhed</strong> — slet 10 eller 1.000 enheder lige hurtigt</li>
+            <li><strong>Certificering</strong> — dokumentation fra en uafhængig tredjepart</li>
+            <li><strong>Ansvarsfrihed</strong> — risikoen overføres til partneren</li>
+            <li><strong>Værdiskabelse</strong> — enheder kan sælges videre efter sletning</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Har du brug for certificeret datasletning?</h3>
+            <p>Vi sletter data efter NIST 800-88 standarden og leverer fuld dokumentation til din GDPR-compliance.</p>
+            <a href="https://scandic-it.com/#contact" class="cta-button">Få et tilbud på datasletning →</a>
+        </div>
+
+        <h2>Særlige tilfælde</h2>
+
+        <h3>SSD og NVMe-drev</h3>
+        <p>
+            Moderne SSD-drev kræver særlig håndtering. Traditionel overskrivning virker ikke på samme måde som på HDD, fordi SSD'er har wear-leveling og reservesektorer. Brug altid <strong>Cryptographic Erase</strong> eller <strong>Secure Erase</strong> kommandoer bygget ind i drevet.
+        </p>
+
+        <h3>Defekte drev</h3>
+        <p>
+            Hvis et drev er defekt og ikke kan læses/skrives, er software-baseret sletning ikke mulig. Her er fysisk destruktion den eneste sikre løsning.
+        </p>
+
+        <h3>Mobiltelefoner og tablets</h3>
+        <p>
+            Factory reset er ikke tilstrækkelig. Brug specialiseret mobil-sletningssoftware der verificerer, at alle data — inklusiv fra interne chips — er fjernet.
+        </p>
+
+        <h2>Konklusion: Tag det alvorligt</h2>
+
+        <p>
+            Datasletning er ikke en efterbehandling — det er en kritisk del af din informationssikkerhed. Med GDPR's krav om irreversibel sletning og dokumentation er "godt nok" ikke længere godt nok.
+        </p>
+
+        <p>
+            Investér i en ordentlig proces nu, fremfor at betale prisen for et databrud senere. Din virksomheds omdømme — og potentielt €20 millioner — afhænger af det.
+        </p>
+
+        <div class="author">
+            <div class="author-avatar">SI</div>
+            <div class="author-info">
+                <h4>Scandic IT</h4>
+                <p>NAID-certificeret datasletning. Vi har slettet data fra over 50.000 enheder siden 2016.</p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
