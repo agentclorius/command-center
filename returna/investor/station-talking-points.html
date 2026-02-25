@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Talking Points</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; 
+            color: #1a1a1a; 
+            max-width: 850px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background: #fff;
+        }
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #111; }
+        .subtitle { color: #666; margin-bottom: 2rem; }
+        
+        .station {
+            margin: 30px 0;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .station-header {
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .station-header .icon { margin-right: 10px; }
+        .station-body { padding: 20px; }
+        
+        h3 { 
+            font-size: 1rem; 
+            color: #10b981; 
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        h3:first-child { margin-top: 0; }
+        
+        .process {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-point strong { display: block; margin-bottom: 5px; color: #065f46; }
+        .key-point .quote {
+            font-style: italic;
+            color: #333;
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 2px solid #10b981;
+        }
+        
+        .compliance-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .compliance-box h4 { color: #1e40af; margin-bottom: 8px; font-size: 0.9rem; }
+        .compliance-box ul { margin: 0 0 0 20px; }
+        .compliance-box li { margin: 4px 0; font-size: 0.95rem; }
+        
+        .show-box {
+            background: #fefce8;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .show-box h4 { color: #92400e; margin-bottom: 8px; font-size: 0.9rem; }
+        .show-box ul { margin: 0 0 0 20px; }
+        .show-box li { margin: 4px 0; font-size: 0.95rem; }
+        
+        .power-quotes {
+            background: #111;
+            color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .power-quotes h2 { color: #10b981; margin-bottom: 15px; font-size: 1.2rem; }
+        .power-quote {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+        .power-quote .label { 
+            font-size: 0.8rem; 
+            color: #888; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .power-quote .text { font-style: italic; line-height: 1.7; }
+        
+        @media print {
+            .station { page-break-inside: avoid; }
+            .power-quotes { background: #333; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Station Talking Points</h1>
+    <p class="subtitle">Investor Visit — Scandic IT</p>
+
+    <!-- STATION 1 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">📦</span> Station 1: Intake / Modtagelse
+        </div>
+        <div class="station-body">
+            <h3>Hvad sker der her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Devices ankommer (pakker, paller, direkte leveringer)</li>
+                    <li>Hver device scannes og registreres</li>
+                    <li>Chain-of-custody starter — alt dokumenteres fra nu</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Sporbarhed fra sekund ét</strong>
+                <div class="quote">"Fra det øjeblik en device scanner ind, ved vi præcis hvor den er, hvem der sendte den, og hvad der skal ske med den."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Automatisk ticket-oprettelse</strong>
+                <div class="quote">"Returna opretter automatisk en ticket per device. Ingen manuel dataindtastning, ingen fejl, ingen forsinkelse."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Enterprise-integration</strong>
+                <div class="quote">"For GBT kommer data direkte fra deres ITSM-system. Når en medarbejder afleverer en laptop, ved vi det før pakken ankommer."</div>
+            </div>
+
+            <div class="compliance-box">
+                <h4>🔒 Compliance-kobling</h4>
+                <ul>
+                    <li><strong>GDPR:</strong> Dokumenteret modtagelse af data-bærende udstyr</li>
+                    <li><strong>CSRD:</strong> Sporbar cirkulær økonomi-flow</li>
+                    <li><strong>Chain-of-custody:</strong> Audit trail starter her</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATION 2 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">🔐</span> Station 2: Datasletning / Erasure
+        </div>
+        <div class="station-body">
+            <h3>Hvad sker der her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Devices tilsluttes erasure-stationer</li>
+                    <li>Software kører certificeret sletning (NIST 800-88)</li>
+                    <li>Certifikat genereres automatisk per device</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Certificeret, ikke bare slettet</strong>
+                <div class="quote">"Vi bruger Blancco — branchestandard. Hver sletning følger NIST 800-88 og genererer et certifikat der holder i en audit."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Automatisk dokumentation</strong>
+                <div class="quote">"Certifikatet linkes automatisk til devicen i Returna. Enterprise-kunden kan trække det frem om 5 år hvis de får en GDPR-forespørgsel."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Ingen manuelle huller</strong>
+                <div class="quote">"Alt er systematiseret. Der er ingen 'glemte' devices, ingen Excel-ark der forsvinder. Det er infrastruktur, ikke process."</div>
+            </div>
+
+            <div class="compliance-box">
+                <h4>🔒 Compliance-kobling</h4>
+                <ul>
+                    <li><strong>GDPR Art. 17:</strong> Right to erasure — dokumenteret opfyldt</li>
+                    <li><strong>NIST 800-88:</strong> US federal standard</li>
+                    <li><strong>ISO 27001:</strong> Informationssikkerhed</li>
+                </ul>
+            </div>
+
+            <div class="show-box">
+                <h4>👁️ Vis konkret</h4>
+                <ul>
+                    <li>Live sletning i gang (status på skærm)</li>
+                    <li>Færdigt certifikat (PDF)</li>
+                    <li>Certifikat i Returna-systemet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATION 3 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">🔍</span> Station 3: Diagnostik & Grading
+        </div>
+        <div class="station-body">
+            <h3>Hvad sker der her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Devices testes: batteri, skærm, tastatur, ports, etc.</li>
+                    <li>Kosmetisk vurdering: ridser, buler, slitage</li>
+                    <li>Grade tildeles: A (som ny) → D (defekt)</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Objektiv vurdering</strong>
+                <div class="quote">"Grading er standardiseret. En Grade B hos os er det samme som Grade B hos en Return Hub i Tyskland. Det er forudsætningen for et netværk."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Grading bestemmer routing</strong>
+                <div class="quote">"Grade A/B går til resale. Grade C går til refurb. Grade D går til recycling. Returna automatiserer denne routing — intet manuelt valg."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Maksimering af værdi</strong>
+                <div class="quote">"Jo mere præcis grading, jo bedre prissætning. En forkert-gradet device er enten tabt profit eller utilfreds køber."</div>
+            </div>
+
+            <div class="compliance-box">
+                <h4>🔒 Compliance-kobling</h4>
+                <ul>
+                    <li><strong>ESPR:</strong> Refurb-first — vi sender ikke funktionelle devices til recycling</li>
+                    <li><strong>CSRD:</strong> Dokumenteret cirkulær praksis</li>
+                    <li><strong>DPP-ready:</strong> Grade og tilstand er del af livscyklusdata</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATION 4 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">🔧</span> Station 4: Refurb / Repair
+        </div>
+        <div class="station-body">
+            <h3>Hvad sker der her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Defekte komponenter udskiftes (batteri, keyboard, skærm)</li>
+                    <li>Kosmetisk opgradering (rengøring, skins, polish)</li>
+                    <li>Re-grading efter refurb</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Værdiløft</strong>
+                <div class="quote">"En laptop med dårligt batteri er Grade C — måske €80 i resale. Nyt batteri = Grade B = €180+. Refurb er value creation."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Bæredygtighed i praksis</strong>
+                <div class="quote">"Hver refurb'et device er en device der ikke bliver til e-waste. Det er den cirkulære økonomi i aktion — ikke i en rapport, men på gulvet her."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Skalerbar kvalitet</strong>
+                <div class="quote">"Vi arbejder med TRC på træning og certificering. Return Hubs i netværket følger samme standarder — en refurb i Polen matcher en refurb i Danmark."</div>
+            </div>
+
+            <div class="compliance-box">
+                <h4>🔒 Compliance-kobling</h4>
+                <ul>
+                    <li><strong>ESPR:</strong> Aktiv reparation og genbrug</li>
+                    <li><strong>Right to Repair:</strong> Vi bruger tilgængelige dele</li>
+                    <li><strong>CSRD:</strong> Dokumenteret refurb-aktivitet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATION 5 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">💰</span> Station 5: Resale & Disposition
+        </div>
+        <div class="station-body">
+            <h3>Hvad sker der her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Salgbare devices prissættes og listes</li>
+                    <li>Salg via B2B-kanaler, markedspladser, bulk-købere</li>
+                    <li>Ikke-salgbare devices → certificeret recycling</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Resale-først</strong>
+                <div class="quote">"Vi sælger alt der kan sælges. Recycling er sidste udvej — ikke default. Det maksimerer værdi og minimerer waste."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Transparent værdifordeling</strong>
+                <div class="quote">"Returna tracker resale-proceeds. Enterprise-kunden ser præcis hvad deres devices blev solgt for — og hvad de får tilbage."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Certificeret recycling</strong>
+                <div class="quote">"Når en device ikke kan sælges, går den til certificeret recycling. Også det dokumenteres — fuld sporbarhed hele vejen."</div>
+            </div>
+
+            <div class="compliance-box">
+                <h4>🔒 Compliance-kobling</h4>
+                <ul>
+                    <li><strong>CSRD:</strong> Dokumenteret resale og recycling-rate</li>
+                    <li><strong>ESPR:</strong> Forbud mod destruktion af funktionel elektronik</li>
+                    <li><strong>WEEE:</strong> Certificeret håndtering af e-waste</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATION 6 -->
+    <div class="station">
+        <div class="station-header">
+            <span class="icon">📊</span> Station 6: Returna Dashboard
+        </div>
+        <div class="station-body">
+            <h3>Hvad viser I her?</h3>
+            <div class="process">
+                <ul>
+                    <li>Enterprise-view: Hvad kunden ser</li>
+                    <li>Compliance-rapporter: CSRD, GDPR, audit trail</li>
+                    <li>Metrics: Devices processed, value recovered, CO2 saved</li>
+                </ul>
+            </div>
+
+            <h3>Key Points</h3>
+            <div class="key-point">
+                <strong>1. Alt samlet ét sted</strong>
+                <div class="quote">"Enterprise-kunden logger ind her og ser alt: status på devices, certifikater, resale-proceeds, ESG-metrics. Ingen spreadsheets, ingen emails frem og tilbage."</div>
+            </div>
+            <div class="key-point">
+                <strong>2. Audit-ready</strong>
+                <div class="quote">"Når deres auditor spørger 'hvad skete der med jeres IT-udstyr?' — det her er svaret. Ét klik."</div>
+            </div>
+            <div class="key-point">
+                <strong>3. Skalerbart</strong>
+                <div class="quote">"Det her er én kunde, ét Return Hub. Returna skalerer det til 50 kunder, 20 Return Hubs, globalt. Samme interface, samme dokumentation."</div>
+            </div>
+
+            <div class="show-box">
+                <h4>👁️ Vis konkret</h4>
+                <ul>
+                    <li>Live dashboard (GBT eller demo-kunde)</li>
+                    <li>Download af compliance-rapport</li>
+                    <li>Audit trail for én device (fuld rejse)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- POWER QUOTES -->
+    <div class="power-quotes">
+        <h2>💬 Power Quotes — brug hvor det passer</h2>
+        
+        <div class="power-quote">
+            <div class="label">Om sporbarhed</div>
+            <div class="text">"Enterprises ved ikke hvad der sker med deres devices i dag. Med Returna ved de det — dokumenteret, auditerbart, compliant."</div>
+        </div>
+        
+        <div class="power-quote">
+            <div class="label">Om netværket</div>
+            <div class="text">"I har set én Return Hub. Forestil jer 50 af disse, på 3 kontinenter, med samme standarder og samme dokumentation. Det er Returna."</div>
+        </div>
+        
+        <div class="power-quote">
+            <div class="label">Om compliance</div>
+            <div class="text">"CSRD, GDPR, ESPR, DPP — det er ikke buzzwords. Det er lovkrav der rammer nu. Vi bygger infrastrukturen til at overholde dem."</div>
+        </div>
+        
+        <div class="power-quote">
+            <div class="label">Om timing</div>
+            <div class="text">"Om 2 år har alle brug for dette. Vi bygger det nu."</div>
+        </div>
+    </div>
+</body>
+</html>
