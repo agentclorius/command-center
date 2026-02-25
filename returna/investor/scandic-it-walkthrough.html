@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Visit: Scandic IT Walkthrough</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; 
+            color: #1a1a1a; 
+            max-width: 850px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background: #fff;
+        }
+        h1 { font-size: 2rem; margin-bottom: 0.25rem; color: #111; }
+        .subtitle { color: #666; margin-bottom: 1rem; }
+        h2 { 
+            font-size: 1.4rem; 
+            margin: 2rem 0 1rem; 
+            color: #fff;
+            background: #111;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2 .num {
+            background: #10b981;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: #333; }
+        
+        .overview {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .overview p { margin: 8px 0; }
+        
+        .station {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .station-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .station-title { font-weight: 600; font-size: 1.1rem; }
+        .station-time { 
+            background: #f1f5f9; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .station-location {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .quote-box {
+            background: #f8fafc;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        ul { margin: 10px 0 10px 20px; }
+        li { margin: 5px 0; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 10px 15px; text-align: left; border-bottom: 1px solid #e5e5e5; }
+        th { background: #f8fafc; font-weight: 600; }
+        
+        .checklist {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .checklist h3 { margin-top: 0; color: #92400e; }
+        .checklist li { margin: 8px 0; }
+        
+        .key-message {
+            background: #111;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+        .key-message em { color: #10b981; font-style: normal; }
+        
+        @media print {
+            body { padding: 20px; font-size: 11pt; }
+            h2 { background: #333; }
+            .station { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Investor Visit: Scandic IT</h1>
+    <p class="subtitle">Tirsdag 17. februar 2026</p>
+
+    <div class="overview">
+        <p><strong>Formål:</strong> Vis investor hvordan ITAD-processen fungerer i praksis — og hvordan Returna orkestrerer det hele.</p>
+        <p><strong>Varighed:</strong> 45-60 min (juster efter interesse)</p>
+        <p><strong>Nøglebudskab:</strong> "Det her er hvad der sker hos én Return Hub. Returna forbinder enterprises med et netværk af disse — globalt, standardiseret, compliant."</p>
+    </div>
+
+    <h2><span class="num">1</span> Velkomst & Kontekst</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Introduktion</span>
+            <span class="station-time">5 min</span>
+        </div>
+        <p class="station-location">📍 Kontor / mødelokale</p>
+        <ul>
+            <li>Kort intro til Scandic IT (baggrund, kapacitet, certificeringer)</li>
+            <li>Forklar at Scandic IT er "Return Hub #1" — proof of concept</li>
+            <li>Sæt rammen: "Vi viser jer hele rejsen en device tager"</li>
+        </ul>
+        <div class="quote-box">
+            "Scandic IT er vores egen ITAD-operation — det er her vi byggede og testede Returna. I dag viser vi jer hvad der sker fra en device ankommer til den er solgt, genbrugt eller recyclet."
+        </div>
+    </div>
+
+    <h2><span class="num">2</span> Modtagelse / Intake</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Chain of custody starter</span>
+            <span class="station-time">10 min</span>
+        </div>
+        <p class="station-location">📍 Modtagelsesområde / lager-indgang</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis indkommende pakker/paller</li>
+            <li>Scan af devices → registrering i Returna</li>
+            <li>Chain-of-custody dokumentation starter her</li>
+        </ul>
+        <p><strong>Vis på skærm:</strong></p>
+        <ul>
+            <li>Returna intake-flow</li>
+            <li>Automatisk ticket-oprettelse</li>
+            <li>Device registreret med serienummer, model, afsender</li>
+        </ul>
+        <div class="quote-box">
+            "Fra det øjeblik en device scanner ind, er den i systemet. Alt er sporbart. Det er fundamentet for den compliance-dokumentation enterprises har brug for."
+        </div>
+    </div>
+
+    <h2><span class="num">3</span> Datasletning</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">GDPR compliance i praksis</span>
+            <span class="station-time">10 min</span>
+        </div>
+        <p class="station-location">📍 Erasure-station</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis erasure-setup (maskiner, software)</li>
+            <li>Forklar NIST 800-88 / Blancco-certificering</li>
+            <li>Vis certifikat-generering</li>
+        </ul>
+        <p><strong>Vis på skærm:</strong></p>
+        <ul>
+            <li>Erasure-status i Returna</li>
+            <li>Automatisk certifikat når sletning er komplet</li>
+            <li>Link til GDPR Art. 17 compliance</li>
+        </ul>
+        <div class="quote-box">
+            "Det her er kernen i data-compliance. Hver eneste device får et certifikat der dokumenterer sletning. Det er det enterprises viser til deres auditors — og det Returna leverer automatisk."
+        </div>
+    </div>
+
+    <h2><span class="num">4</span> Diagnostik & Grading</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Værdivurdering</span>
+            <span class="station-time">10 min</span>
+        </div>
+        <p class="station-location">📍 Test/diagnostik-område</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis diagnostik-proces (batteri, skærm, tastatur, etc.)</li>
+            <li>Forklar grading-skala (A/B/C/D)</li>
+            <li>Vis hvordan grading bestemmer disposition</li>
+        </ul>
+        <p><strong>Vis på skærm:</strong></p>
+        <ul>
+            <li>Diagnostik-resultater i Returna</li>
+            <li>Automatisk grade-tildeling</li>
+            <li>Routing-logik: Grade A/B → resale, Grade C → refurb, Grade D → recycling</li>
+        </ul>
+        <div class="quote-box">
+            "Grading afgør hvad der sker med devicen. Returna automatiserer denne routing — det sikrer at vi maksimerer værdi og minimerer waste."
+        </div>
+    </div>
+
+    <h2><span class="num">5</span> Refurb / Repair</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Værdiløft</span>
+            <span class="station-time">5-10 min</span>
+        </div>
+        <p class="station-location">📍 Refurb-værksted</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis repair-kapacitet (keyboard, batteri, skærm)</li>
+            <li>Vis kosmetisk refurb (rengøring, skins)</li>
+            <li>Forklar værdiløft: Grade C → Grade B</li>
+        </ul>
+        <div class="quote-box">
+            "En device der ville være €50 i recycling-værdi bliver €200+ efter refurb. Det er værdi for enterprise-kunden — og margin for Return Hub."
+        </div>
+    </div>
+
+    <h2><span class="num">6</span> Resale / Disposition</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Slutdestination</span>
+            <span class="station-time">5 min</span>
+        </div>
+        <p class="station-location">📍 Lager / pakkestation</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis færdige devices klar til salg</li>
+            <li>Forklar resale-kanaler (B2B, markedspladser)</li>
+            <li>Vis recycling-flow for ikke-salgbare devices</li>
+        </ul>
+        <div class="quote-box">
+            "Alt ender ét af tre steder: solgt, doneret eller recyclet. Returna tracker hele vejen — og rapporterer tilbage til enterprise-kunden."
+        </div>
+    </div>
+
+    <h2><span class="num">7</span> Returna Dashboard</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Enterprise-view</span>
+            <span class="station-time">10 min</span>
+        </div>
+        <p class="station-location">📍 Kontor / mødelokale</p>
+        <p><strong>Hvad:</strong></p>
+        <ul>
+            <li>Vis Returna dashboard fra enterprise-perspektiv</li>
+            <li>Gennemgå key metrics og rapporter</li>
+            <li>Vis compliance-dokumentation samlet</li>
+        </ul>
+        <p><strong>Vis på skærm:</strong></p>
+        <ul>
+            <li>Enterprise dashboard</li>
+            <li>ESG/CSRD-rapportering</li>
+            <li>Audit trail</li>
+            <li>Resale-proceeds oversigt</li>
+        </ul>
+        <div class="quote-box">
+            "Det her er hvad enterprise-kunden ser. Fuld transparens, automatisk dokumentation, compliant fra dag ét. Det er værdien af Returna — ikke bare processing, men infrastruktur."
+        </div>
+    </div>
+
+    <h2><span class="num">8</span> Afslutning & Q&A</h2>
+    <div class="station">
+        <div class="station-header">
+            <span class="station-title">Opsummering</span>
+            <span class="station-time">5-10 min</span>
+        </div>
+        <p class="station-location">📍 Mødelokale</p>
+        <ul>
+            <li>Opsummer hvad de har set</li>
+            <li>Knyt til investor-pitch: netværk, skala, compliance</li>
+            <li>Åben for spørgsmål</li>
+        </ul>
+        <div class="quote-box">
+            "I har set én Return Hub. Returna's værdi er at forbinde enterprises med et netværk af disse — med samme standarder, samme dokumentation, global dækning. Det er infrastrukturen vi bygger."
+        </div>
+    </div>
+
+    <div class="checklist">
+        <h3>✅ Logistics Checklist</h3>
+        <p><strong>Før besøget:</strong></p>
+        <ul>
+            <li>☐ Devices klar til demo i hver station</li>
+            <li>☐ Returna logged ind og klar på skærm/laptop</li>
+            <li>☐ Test-device klar til live intake-demo</li>
+            <li>☐ Kaffe/vand klar</li>
+        </ul>
+        <p><strong>Nice to have:</strong></p>
+        <ul>
+            <li>☐ Print af sample certifikater (erasure, recycling)</li>
+            <li>☐ One-pager på bordet i mødelokale</li>
+            <li>☐ Scandic IT capabilities-oversigt</li>
+        </ul>
+    </div>
+
+    <h3>Timing oversigt</h3>
+    <table>
+        <tr><th>Station</th><th>Tid</th><th>Kumulativ</th></tr>
+        <tr><td>1. Velkomst</td><td>5 min</td><td>5 min</td></tr>
+        <tr><td>2. Intake</td><td>10 min</td><td>15 min</td></tr>
+        <tr><td>3. Datasletning</td><td>10 min</td><td>25 min</td></tr>
+        <tr><td>4. Diagnostik/Grading</td><td>10 min</td><td>35 min</td></tr>
+        <tr><td>5. Refurb</td><td>5-10 min</td><td>45 min</td></tr>
+        <tr><td>6. Resale/Disposition</td><td>5 min</td><td>50 min</td></tr>
+        <tr><td>7. Dashboard</td><td>10 min</td><td>60 min</td></tr>
+        <tr><td>8. Q&A</td><td>5-10 min</td><td>65-70 min</td></tr>
+    </table>
+
+    <div class="key-message">
+        "I har set <em>én Return Hub</em>. Forestil jer <em>50 af disse</em>, på <em>3 kontinenter</em>, med <em>samme standarder</em>. Det er Returna."
+    </div>
+</body>
+</html>
