@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konkurrentanalyse: Suppleo.io</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; 
+            color: #1a1a1a; 
+            max-width: 850px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background: #fff;
+        }
+        h1 { font-size: 2rem; margin-bottom: 0.25rem; color: #111; }
+        .subtitle { color: #666; margin-bottom: 2rem; }
+        h2 { 
+            font-size: 1.3rem; 
+            margin: 2rem 0 1rem; 
+            color: #111; 
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #10b981;
+        }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: #333; }
+        
+        .tldr {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .tldr h2 { margin: 0 0 10px; border: none; padding: 0; font-size: 1.1rem; }
+        .tldr .verdict {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #059669;
+        }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e5e5e5; }
+        th { background: #f8fafc; font-weight: 600; color: #333; }
+        tr:hover { background: #fafafa; }
+        
+        .lifecycle-diagram {
+            background: #111;
+            color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .lifecycle-diagram .flow {
+            font-size: 0.95rem;
+            margin: 15px 0;
+        }
+        .lifecycle-diagram .label {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 4px;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        .label-suppleo { background: #3b82f6; }
+        .label-returna { background: #10b981; }
+        .arrow { color: #666; }
+        
+        .quote-box {
+            background: #f8fafc;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .comp-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .comp-card h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .comp-card ul { margin: 10px 0 0 20px; }
+        .comp-card li { margin: 5px 0; font-size: 0.95rem; }
+        
+        .partnership-flow {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .partnership-flow .step {
+            padding: 8px 0;
+            border-left: 2px solid #10b981;
+            padding-left: 15px;
+            margin-left: 10px;
+        }
+        
+        .verdict-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .verdict-item {
+            background: #f0fdf4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .verdict-item .icon { font-size: 1.5rem; }
+        .verdict-item .label { font-size: 0.85rem; color: #666; margin-top: 5px; }
+        .verdict-item .value { font-weight: 600; color: #059669; }
+        
+        .investor-answer {
+            background: #111;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .investor-answer .q {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .investor-answer .a {
+            font-style: italic;
+            line-height: 1.7;
+        }
+        
+        @media print {
+            body { padding: 20px; }
+            .lifecycle-diagram, .investor-answer { background: #333; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Konkurrentanalyse: Suppleo.io</h1>
+    <p class="subtitle">Februar 2026</p>
+
+    <div class="tldr">
+        <h2>TL;DR</h2>
+        <p class="verdict">Suppleo er IKKE en direkte konkurrent.</p>
+        <p style="margin-top: 10px;">De opererer i en anden del af device lifecycle:</p>
+        <ul style="margin: 10px 0 0 20px;">
+            <li><strong>Suppleo</strong> = Procurement + deployment + mid-life (DaaS)</li>
+            <li><strong>Returna</strong> = End-of-life + disposition + compliance</li>
+        </ul>
+        <p style="margin-top: 10px;">Minimal overlap. Faktisk potentiale for <strong>partnerskab</strong>.</p>
+    </div>
+
+    <h2>Hvad er Suppleo?</h2>
+    
+    <h3>Kerneprodukt</h3>
+    <p><strong>Device as a Service (DaaS) platform</strong> til IT-resellere og MSPs.</p>
+    <p style="margin-top: 10px;">White-label løsning hvor resellere kan:</p>
+    <ul style="margin: 10px 0 0 20px;">
+        <li>Oprette branded e-commerce shops for deres kunder</li>
+        <li>Sælge hardware + forsikring + finansiering + services</li>
+        <li>Automatisk asset management når kunden køber</li>
+        <li>Håndtere repairs og support gennem integreret netværk</li>
+    </ul>
+
+    <h3>Target kunde</h3>
+    <p><strong>IT-resellere og MSPs</strong> — ikke enterprises direkte.</p>
+    <p>B2B2B model: Suppleo → Reseller → Enterprise</p>
+
+    <h3>Geografisk fokus</h3>
+    <p>HQ: Glostrup, Danmark. Primært nordisk/europæisk fokus.</p>
+
+    <h2>Lifecycle Position</h2>
+    
+    <div class="lifecycle-diagram">
+        <p style="color: #888; margin-bottom: 15px;">DEVICE LIFECYCLE</p>
+        <div class="flow">
+            Procurement <span class="arrow">→</span> Deployment <span class="arrow">→</span> Usage <span class="arrow">→</span> Support/Repair <span class="arrow">→</span> End-of-Life <span class="arrow">→</span> Disposition
+        </div>
+        <div style="margin-top: 20px;">
+            <span class="label label-suppleo">SUPPLEO (DaaS)</span>
+            <span style="color: #666; margin: 0 30px;">· · · · · · ·</span>
+            <span class="label label-returna">RETURNA (ITAD)</span>
+        </div>
+        <p style="color: #888; margin-top: 15px; font-size: 0.85rem;">De stopper hvor vi starter</p>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="comp-card">
+            <h4>🔵 Suppleo dækker:</h4>
+            <ul>
+                <li>Procurement (e-commerce, catalog)</li>
+                <li>Deployment (auto-registration)</li>
+                <li>Asset tracking (mid-life)</li>
+                <li>Repairs/support (service network)</li>
+                <li>Insurance & financing</li>
+            </ul>
+        </div>
+        <div class="comp-card">
+            <h4>🟢 Returna dækker:</h4>
+            <ul>
+                <li>End-of-life orchestration</li>
+                <li>Secure data destruction</li>
+                <li>Refurbishment/resale routing</li>
+                <li>Compliance docs (CSRD, GDPR, DPP)</li>
+                <li>Return Hub network (ITAD execution)</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Direkte sammenligning</h2>
+    <table>
+        <tr><th>Dimension</th><th>Suppleo</th><th>Returna</th></tr>
+        <tr><td><strong>Lifecycle stage</strong></td><td>Procurement → mid-life</td><td>End-of-life → disposition</td></tr>
+        <tr><td><strong>Target kunde</strong></td><td>IT resellers/MSPs</td><td>Enterprises + ITAD contractors</td></tr>
+        <tr><td><strong>Business model</strong></td><td>B2B2B (platform for resellers)</td><td>B2B2B (platform for enterprises)</td></tr>
+        <tr><td><strong>Core value</strong></td><td>"Win more deals, scale faster"</td><td>"Compliance infrastructure"</td></tr>
+        <tr><td><strong>Network</strong></td><td>Service/repair partners</td><td>ITAD processing partners</td></tr>
+        <tr><td><strong>Compliance focus</strong></td><td>Minimal</td><td>Core (CSRD, GDPR, DPP)</td></tr>
+        <tr><td><strong>Data destruction</strong></td><td>Ikke fokus</td><td>Core capability</td></tr>
+    </table>
+
+    <h2>Hvorfor de IKKE er konkurrenter</h2>
+    
+    <table>
+        <tr><th>#</th><th>Årsag</th><th>Forklaring</th></tr>
+        <tr><td>1</td><td><strong>Forskellige kunder</strong></td><td>Suppleo → resellere | Returna → enterprises</td></tr>
+        <tr><td>2</td><td><strong>Forskellig lifecycle</strong></td><td>De stopper ved support — vi starter ved EOL</td></tr>
+        <tr><td>3</td><td><strong>Forskellig værdi</strong></td><td>De: "køb og brug" | Vi: "pensioneér compliant"</td></tr>
+        <tr><td>4</td><td><strong>Forskelligt netværk</strong></td><td>De: repair/forsikring | Vi: ITAD/sletning/refurb</td></tr>
+    </table>
+
+    <h2>Partnerskabspotentiale</h2>
+    <p>Der er faktisk en <strong>oplagt integration</strong>:</p>
+    
+    <div class="partnership-flow">
+        <div class="step">Enterprise bruger Suppleo-enabled reseller til DaaS</div>
+        <div class="step">Device lifecycle (3-5 år)</div>
+        <div class="step">Device når end-of-life</div>
+        <div class="step"><strong>Suppleo trigger → Returna API</strong></div>
+        <div class="step">Returna orkestrerer retirement</div>
+        <div class="step">Return Hub håndterer processing</div>
+        <div class="step">Compliance docs tilbage til enterprise</div>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="comp-card">
+            <h4>Værdi for Suppleo:</h4>
+            <ul>
+                <li>Komplet lifecycle tilbud til resellere</li>
+                <li>Ingen behov for at bygge ITAD-netværk</li>
+                <li>Compliance-dokumentation de ikke har</li>
+            </ul>
+        </div>
+        <div class="comp-card">
+            <h4>Værdi for Returna:</h4>
+            <ul>
+                <li>Kanal til enterprises gennem resellere</li>
+                <li>Automatisk lead-gen ved device EOL</li>
+                <li>Data om device fleet før de kommer</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Investor-svar</h2>
+
+    <div class="investor-answer">
+        <p class="q">"Er Suppleo en konkurrent?"</p>
+        <p class="a">"Nej — de er i en anden del af lifecycle. Suppleo hjælper resellere med at sælge og deploye devices. Vi hjælper enterprises med at pensionere dem compliant. Der er faktisk et naturligt partnerskabspotentiale — de stopper hvor vi starter."</p>
+    </div>
+
+    <div class="investor-answer">
+        <p class="q">"Hvorfor tager de ikke jeres marked?"</p>
+        <p class="a">"Fordi ITAD-eksekvering kræver et helt andet netværk. De har repair-partnere og forsikringsselskaber. Vi har ITAD-processorer med datasletning, refurb og recycling. Det er forskellige kompetencer, certificeringer og relationer."</p>
+    </div>
+
+    <div class="investor-answer">
+        <p class="q">"Kunne de bygge det I bygger?"</p>
+        <p class="a">"De kunne forsøge, men det ville kræve at bygge et helt nyt partnernetværk fra scratch. Og compliance-fokusset (CSRD, GDPR, DPP) er ikke deres DNA — de er fokuseret på salg og service, ikke retirement og dokumentation."</p>
+    </div>
+
+    <h2>Konklusion</h2>
+    
+    <div class="verdict-grid">
+        <div class="verdict-item">
+            <div class="icon">🟢</div>
+            <div class="value">Lav</div>
+            <div class="label">Konkurrentrisiko</div>
+        </div>
+        <div class="verdict-item">
+            <div class="icon">🟢</div>
+            <div class="value">Minimalt</div>
+            <div class="label">Overlap</div>
+        </div>
+        <div class="verdict-item">
+            <div class="icon">🟢</div>
+            <div class="value">Højt</div>
+            <div class="label">Partnerskab</div>
+        </div>
+        <div class="verdict-item">
+            <div class="icon">🟢</div>
+            <div class="value">Lav</div>
+            <div class="label">Strategisk trussel</div>
+        </div>
+    </div>
+
+    <div class="quote-box">
+        <strong>Anbefaling:</strong> Positioner dem som en potentiel integrationspartner, ikke en konkurrent. Hvis investor presser, forklar lifecycle-positionen og det forskellige netværk.
+    </div>
+
+</body>
+</html>
