@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandic IT — Sikker ITAD & Datasletning i Danmark</title>
+    <meta name="description" content="Certificeret IT Asset Disposition (ITAD) for danske virksomheder. Vi henter, sletter data sikkert, og sørger for ansvarlig genanvendelse. R2 & NAID certificeret.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --gray-900: #1e293b;
+            --gray-700: #334155;
+            --gray-500: #64748b;
+            --gray-300: #cbd5e1;
+            --gray-100: #f1f5f9;
+            --white: #ffffff;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gray-700);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--white) 100%);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--gray-300);
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-image {
+            background: var(--primary);
+            border-radius: 16px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .trust-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-500);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .trust-badge .icon {
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.75rem;
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Why Section */
+        .why {
+            padding: 6rem 2rem;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .why .section-header h2 {
+            color: var(--white);
+        }
+
+        .why .section-header p {
+            color: var(--gray-300);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .why-card p {
+            color: var(--gray-300);
+            line-height: 1.7;
+        }
+
+        .why-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            opacity: 0.3;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Process */
+        .process {
+            padding: 6rem 2rem;
+            background: var(--gray-100);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .process-step p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--gray-500);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .cta-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .cta-form {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: left;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.9rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-dark);
+        }
+
+        .cta-contact {
+            margin-top: 2rem;
+            color: var(--gray-700);
+        }
+
+        .cta-contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--dark);
+            color: var(--gray-300);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        /* Draft Banner */
+        .draft-banner {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #f59e0b;
+            color: #78350f;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid,
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .process-steps,
+            .stats-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full {
+                grid-column: span 1;
+            }
+            
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="logo">Scandic<span>IT</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Sådan virker det</a></li>
+                <li><a href="#about">Om os</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Få et tilbud</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Sikker ITAD — <span>fra afhentning til certificeret datasletning</span></h1>
+                <p>Vi henter jeres udtjente computere, telefoner og servere. I får certificeret datasletning, fuld sporbarhed og ofte værdi tilbage.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        Få et tilbud →
+                    </a>
+                    <a href="tel:+4512345678" class="btn-secondary">
+                        Ring: +45 XX XX XX XX
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                📦 Hero billede<br>(warehouse / devices)
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-badge">
+                <span class="icon">✓</span>
+                R2 Certificeret
+            </div>
+            <div class="trust-badge">
+                <span class="icon">✓</span>
+                NAID Certificeret
+            </div>
+            <div class="trust-badge">
+                <span class="icon">✓</span>
+                ISO 27001
+            </div>
+            <div class="trust-badge">
+                <span class="icon">✓</span>
+                ISO 14001
+            </div>
+            <div class="trust-badge">
+                <span class="icon">✓</span>
+                15+ års erfaring
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Vores services</h2>
+                <p>Alt hvad I har brug for til sikker håndtering af udtjente IT-aktiver</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>IT Asset Disposition</h3>
+                    <p>Fuld livscyklushåndtering af udtjente IT-aktiver — fra modtagelse til sikker bortskaffelse eller videresalg.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Certificeret Datasletning</h3>
+                    <p>NIST 800-88 compliant sletning med dokumentation. Fysisk destruktion når det kræves.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Box Programme</h3>
+                    <p>Medarbejdere sender enheder direkte til os via kurer eller pakkeshop. Perfekt til hybride arbejdspladser.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">♻️</div>
+                    <h3>Genbrug & Recycling</h3>
+                    <p>Funktionsdygtige enheder får nyt liv. Resten genanvendes ansvarligt med fuld sporbarhed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Scandic IT -->
+    <section class="why" id="about">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Hvorfor vælge Scandic IT?</h2>
+                <p>Vi er ikke mæglere. Vi driver det hele selv.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-number">01</div>
+                    <h3>Vi driver det selv</h3>
+                    <p>Andre sender dit udstyr videre. Vi har eget lager, egne teknikere, egne processer. Du ved præcis, hvor dine enheder er.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">02</div>
+                    <h3>15+ års erfaring</h3>
+                    <p>Vi har håndteret ITAD siden 2007. Store box programmes, enterprise-kunder, komplekse projekter — vi har set det meste.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">03</div>
+                    <h3>Certificeret og compliant</h3>
+                    <p>R2, NAID, ISO 27001, ISO 14001. Dine data og dit udstyr håndteres efter internationale standarder.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">04</div>
+                    <h3>Dansk support</h3>
+                    <p>Ring til os. Skriv til os. Vi svarer — hurtigt og på dansk. Ingen callcentre, ingen ventetid.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="process">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Sådan fungerer det</h2>
+                <p>Fra første kontakt til dokumentation — vi håndterer alt</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Kontakt os</h3>
+                    <p>Fortæl os, hvad I har. Vi giver et tilbud samme dag.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Vi henter</h3>
+                    <p>Vi afhenter på jeres adresse — eller medarbejderne sender direkte via box programme.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Behandling</h3>
+                    <p>Datasletning, diagnosticering, grading. Alt med fuld sporbarhed.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Rapport</h3>
+                    <p>I modtager certificeret dokumentation. Og ofte et check for de enheder, der stadig har værdi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="section-inner">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50.000+</h3>
+                    <p>Enheder håndteret</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Virksomheder betjent</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Datasikkerhed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="cta-inner">
+            <h2>Klar til at komme i gang?</h2>
+            <p>Fortæl os, hvad I har liggende. Vi giver et uforpligtende tilbud — typisk samme dag.</p>
+            <div class="cta-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Navn</label>
+                        <input type="text" id="name" placeholder="Dit navn">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Virksomhed</label>
+                        <input type="text" id="company" placeholder="Virksomhedsnavn">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="din@email.dk">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" placeholder="+45 XX XX XX XX">
+                    </div>
+                    <div class="form-group full">
+                        <label for="message">Besked (valgfrit)</label>
+                        <textarea id="message" placeholder="Fortæl os kort om jeres behov..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="form-submit">Send forespørgsel</button>
+            </div>
+            <div class="cta-contact">
+                <p>Eller ring direkte: <a href="tel:+4512345678">+45 XX XX XX XX</a> · Email: <a href="mailto:info@scandic-it.com">info@scandic-it.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="logo">Scandic<span>IT</span></a>
+                <p>Sikker håndtering af udtjente IT-aktiver for danske virksomheder siden 2016. R2, NAID og ISO certificeret.</p>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">IT Asset Disposition</a></li>
+                    <li><a href="#">Datasletning</a></li>
+                    <li><a href="#">Box Programme</a></li>
+                    <li><a href="#">Recycling</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Virksomhed</h4>
+                <ul>
+                    <li><a href="#">Om os</a></li>
+                    <li><a href="#">Certificeringer</a></li>
+                    <li><a href="#">Bæredygtighed</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul>
+                    <li><a href="tel:+4512345678">+45 XX XX XX XX</a></li>
+                    <li><a href="mailto:info@scandic-it.com">info@scandic-it.com</a></li>
+                    <li>[Adresse]</li>
+                    <li>CVR: [nummer]</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Scandic IT ApS. Alle rettigheder forbeholdes.</p>
+            <p><a href="#">Privatlivspolitik</a></p>
+        </div>
+    </footer>
+
+    <!-- Draft Banner -->
+    <div class="draft-banner">
+        ⚠️ DRAFT — til gennemgang
+    </div>
+</body>
+</html>
