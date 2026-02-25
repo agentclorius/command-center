@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returna Partner Pipeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        
+        .stat-card p {
+            color: #888;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        .controls-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .filter-group label {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .filter-group select {
+            padding: 10px 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 13px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        
+        .filter-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .tab:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .panel {
+            display: none;
+        }
+        
+        .panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 2px solid #e9ecef;
+            position: sticky;
+            top: 0;
+        }
+        
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+        
+        tr {
+            transition: background 0.15s;
+        }
+        
+        tbody tr:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+        
+        tbody tr {
+            cursor: pointer;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-priority {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #1a5a3a;
+        }
+        
+        .status-research {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #8a4a1c;
+        }
+        
+        .status-outreach {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2d5a7b;
+        }
+        
+        .status-pipeline {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #1a5a3a;
+        }
+        
+        .status-gap {
+            background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+            color: #5a2a6a;
+        }
+        
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .score-value {
+            font-weight: 700;
+            font-size: 16px;
+            min-width: 28px;
+        }
+        
+        .score-fill {
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            width: 80px;
+            overflow: hidden;
+        }
+        
+        .score-fill-inner {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .score-high { background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%); }
+        .score-medium { background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%); }
+        .score-low { background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%); }
+        
+        .cert-badges {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .cert-yes {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .cert-no {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .cert-unknown {
+            background: #e9ecef;
+            color: #666;
+        }
+        
+        .notes-cell {
+            max-width: 280px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .flag {
+            font-size: 22px;
+            margin-right: 10px;
+        }
+        
+        .company-cell {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .company-cell a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .company-cell a:hover {
+            color: #667eea;
+        }
+        
+        .size-cell {
+            line-height: 1.4;
+        }
+        
+        .size-cell .employees {
+            font-weight: 600;
+        }
+        
+        .size-cell .revenue {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .progress-cell {
+            min-width: 120px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        
+        .progress-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .last-updated {
+            text-align: center;
+            padding: 24px;
+            color: #aaa;
+            font-size: 12px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 8px;
+            color: #666;
+        }
+        
+        /* Detail Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal h2 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .modal-field {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .modal-field label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .modal-field span {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .modal-notes {
+            grid-column: 1 / -1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+            
+            header {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            header h1 {
+                font-size: 22px;
+            }
+            
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .filter-group {
+                justify-content: space-between;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 12px;
+            }
+            
+            .notes-cell {
+                max-width: 150px;
+            }
+            
+            .modal {
+                padding: 20px;
+            }
+            
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Returna Partner Pipeline</h1>
+            <p>Return Hub Network — Partner Acquisition Dashboard</p>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="total-prospects">0</h3>
+                <p>Total Prospects</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="priority-count">0</h3>
+                <p>🟢 Priority</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="countries-covered">0</h3>
+                <p>Countries Covered</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avg-score">0</h3>
+                <p>Avg Score</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="controls-row">
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Search companies, countries, notes...">
+                </div>
+                <div class="filter-group">
+                    <label>Status:</label>
+                    <select id="filter-status">
+                        <option value="">All</option>
+                        <option value="Priority">Priority</option>
+                        <option value="Research">Research</option>
+                        <option value="Outreach">Outreach</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Region:</label>
+                    <select id="filter-region">
+                        <option value="">All</option>
+                        <option value="Nordics">Nordics</option>
+                        <option value="DACH">DACH</option>
+                        <option value="Western Europe">Western Europe</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Score:</label>
+                    <select id="filter-score">
+                        <option value="">All</option>
+                        <option value="80">80+ (Priority)</option>
+                        <option value="60">60+ (Standard)</option>
+                        <option value="0">All Scores</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('pipeline')">📋 Pipeline</button>
+            <button class="tab" onclick="showPanel('regional')">🗺️ Regional Coverage</button>
+            <button class="tab" onclick="showPanel('disqualified')">❌ Disqualified</button>
+        </div>
+        
+        <div id="pipeline" class="panel active">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Country</th>
+                            <th>Status</th>
+                            <th>Score</th>
+                            <th>Size</th>
+                            <th>Certifications</th>
+                            <th>Next Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pipeline-body"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="regional" class="panel">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Region</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Coverage</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="regional-body"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="disqualified" class="panel">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Country</th>
+                            <th>Reason</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="disqualified-body"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="last-updated">
+            Last updated: <span id="last-updated"></span> • Built by Forge 🔨
+        </div>
+    </div>
+    
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <h2 id="modal-title"></h2>
+            <div class="modal-grid" id="modal-content"></div>
+        </div>
+    </div>
+    
+    <script>
+        let data = null;
+        let filteredPipeline = [];
+        
+        async function loadData() {
+            try {
+                const response = await fetch('data.json?' + Date.now());
+                data = await response.json();
+                filteredPipeline = [...data.pipeline];
+                renderDashboard();
+                setupFilters();
+            } catch (error) {
+                console.error('Failed to load data:', error);
+            }
+        }
+        
+        function setupFilters() {
+            document.getElementById('search').addEventListener('input', applyFilters);
+            document.getElementById('filter-status').addEventListener('change', applyFilters);
+            document.getElementById('filter-region').addEventListener('change', applyFilters);
+            document.getElementById('filter-score').addEventListener('change', applyFilters);
+        }
+        
+        function applyFilters() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const status = document.getElementById('filter-status').value;
+            const region = document.getElementById('filter-region').value;
+            const minScore = parseInt(document.getElementById('filter-score').value) || 0;
+            
+            filteredPipeline = data.pipeline.filter(p => {
+                const matchesSearch = !search || 
+                    p.company.toLowerCase().includes(search) ||
+                    p.country.toLowerCase().includes(search) ||
+                    p.notes.toLowerCase().includes(search);
+                const matchesStatus = !status || p.status === status;
+                const matchesRegion = !region || p.region === region;
+                const matchesScore = p.score >= minScore;
+                
+                return matchesSearch && matchesStatus && matchesRegion && matchesScore;
+            });
+            
+            renderPipeline();
+        }
+        
+        function renderDashboard() {
+            // Stats
+            document.getElementById('total-prospects').textContent = data.pipeline.length;
+            document.getElementById('priority-count').textContent = data.pipeline.filter(p => p.status === 'Priority').length;
+            document.getElementById('countries-covered').textContent = data.regional.filter(r => r.status === 'Pipeline').length;
+            const avgScore = Math.round(data.pipeline.reduce((sum, p) => sum + p.score, 0) / data.pipeline.length);
+            document.getElementById('avg-score').textContent = avgScore;
+            document.getElementById('last-updated').textContent = new Date(data.lastUpdated).toLocaleString('da-DK');
+            
+            renderPipeline();
+            renderRegional();
+            renderDisqualified();
+        }
+        
+        function renderPipeline() {
+            const pipelineBody = document.getElementById('pipeline-body');
+            
+            if (filteredPipeline.length === 0) {
+                pipelineBody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <h3>No matches found</h3>
+                                <p>Try adjusting your filters</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            pipelineBody.innerHTML = filteredPipeline.map((p, i) => `
+                <tr onclick="showDetail(${i})">
+                    <td class="company-cell">
+                        <span class="flag">${p.flag}</span>
+                        <a href="https://${p.website}" target="_blank" onclick="event.stopPropagation()">${p.company}</a>
+                    </td>
+                    <td>${p.country}</td>
+                    <td><span class="status-badge status-${p.status.toLowerCase()}">${p.status}</span></td>
+                    <td>
+                        <div class="score-bar">
+                            <span class="score-value">${p.score}</span>
+                            <div class="score-fill">
+                                <div class="score-fill-inner ${p.score >= 80 ? 'score-high' : p.score >= 60 ? 'score-medium' : 'score-low'}" 
+                                     style="width: ${p.score}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="size-cell">
+                        <div class="employees">${p.employees || '?'} emp</div>
+                        <div class="revenue">${p.revenue}</div>
+                    </td>
+                    <td>
+                        <div class="cert-badges">
+                            <span class="cert-badge ${p.iso27001 === true ? 'cert-yes' : p.iso27001 === false ? 'cert-no' : 'cert-unknown'}">
+                                27001 ${p.iso27001 === true ? '✓' : p.iso27001 === false ? '✗' : '?'}
+                            </span>
+                            <span class="cert-badge ${p.iso14001 === true ? 'cert-yes' : p.iso14001 === false ? 'cert-no' : 'cert-unknown'}">
+                                14001 ${p.iso14001 === true ? '✓' : p.iso14001 === false ? '✗' : '?'}
+                            </span>
+                        </div>
+                    </td>
+                    <td>${p.nextAction}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function renderRegional() {
+            const regionalBody = document.getElementById('regional-body');
+            regionalBody.innerHTML = data.regional.map(r => {
+                const coverage = r.target > 0 ? Math.round((r.prospects / r.target) * 100) : 0;
+                return `
+                    <tr>
+                        <td><span class="flag">${r.flag}</span><strong>${r.country}</strong></td>
+                        <td>${r.region}</td>
+                        <td><strong>#${r.priority}</strong></td>
+                        <td><span class="status-badge status-${r.status.toLowerCase()}">${r.status}</span></td>
+                        <td class="progress-cell">
+                            <div class="progress-text">${r.prospects} / ${r.target} hubs</div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-inner" style="width: ${coverage}%"></div>
+                            </div>
+                        </td>
+                        <td class="notes-cell">${r.notes}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function renderDisqualified() {
+            const disqualifiedBody = document.getElementById('disqualified-body');
+            disqualifiedBody.innerHTML = data.disqualified.map(d => `
+                <tr>
+                    <td class="company-cell"><span class="flag">${d.flag}</span>${d.company}</td>
+                    <td>${d.country}</td>
+                    <td><span class="status-badge status-gap">${d.reason}</span></td>
+                    <td class="notes-cell">${d.notes}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function showPanel(panelId) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function showDetail(index) {
+            const p = filteredPipeline[index];
+            document.getElementById('modal-title').innerHTML = `<span class="flag">${p.flag}</span> ${p.company}`;
+            document.getElementById('modal-content').innerHTML = `
+                <div class="modal-field">
+                    <label>Country</label>
+                    <span>${p.country}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Region</label>
+                    <span>${p.region}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Status</label>
+                    <span class="status-badge status-${p.status.toLowerCase()}">${p.status}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Score</label>
+                    <span>${p.score}/100</span>
+                </div>
+                <div class="modal-field">
+                    <label>Employees</label>
+                    <span>${p.employees || 'Unknown'}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Revenue</label>
+                    <span>${p.revenue}</span>
+                </div>
+                <div class="modal-field">
+                    <label>ISO 27001</label>
+                    <span>${p.iso27001 === true ? '✅ Yes' : p.iso27001 === false ? '❌ No' : '❓ Unknown'}</span>
+                </div>
+                <div class="modal-field">
+                    <label>ISO 14001</label>
+                    <span>${p.iso14001 === true ? '✅ Yes' : p.iso14001 === false ? '❌ No' : '❓ Unknown'}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Website</label>
+                    <span><a href="https://${p.website}" target="_blank">${p.website}</a></span>
+                </div>
+                <div class="modal-field">
+                    <label>Contact</label>
+                    <span>${p.contact || 'N/A'}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Next Action</label>
+                    <span>${p.nextAction}</span>
+                </div>
+                <div class="modal-field">
+                    <label>Last Touch</label>
+                    <span>${p.lastTouch}</span>
+                </div>
+                <div class="modal-field modal-notes">
+                    <label>Notes</label>
+                    <span>${p.notes}</span>
+                </div>
+            `;
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+        
+        function closeModal(event) {
+            if (event.target.id === 'modal-overlay') {
+                document.getElementById('modal-overlay').classList.remove('active');
+            }
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('modal-overlay').classList.remove('active');
+            }
+        });
+        
+        loadData();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
