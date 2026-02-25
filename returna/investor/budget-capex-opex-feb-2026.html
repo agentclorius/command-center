@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returna — Budget CAPEX/OPEX</title>
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008C44;
+            --accent: #26A69A;
+            --bg-light: #f8faf9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --capex: #3b82f6;
+            --opex: #10b981;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.7; 
+            min-height: 100vh; 
+        }
+        
+        .header {
+            background: #064e3b;
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+        
+        .header-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 2rem;
+        }
+        
+        .card {
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        h1 { 
+            color: var(--primary-dark); 
+            font-size: 2rem; 
+            margin-bottom: 0.25rem; 
+            font-weight: 700; 
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        h2 { 
+            color: var(--primary-dark); 
+            font-size: 1.3rem; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem; 
+            border-bottom: 2px solid #e8f5f0; 
+        }
+        
+        h3 { 
+            color: var(--accent); 
+            font-size: 1.1rem; 
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .badge-capex {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-opex {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 1rem 0 1.5rem 0; 
+            font-size: 0.95rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+        
+        th { 
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); 
+            color: white; 
+            padding: 0.9rem 1rem; 
+            text-align: left; 
+            font-weight: 600; 
+        }
+        
+        td { 
+            border-bottom: 1px solid #e8f5f0; 
+            padding: 0.8rem 1rem; 
+        }
+        
+        tr:hover td { 
+            background: #f0faf5; 
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr.highlight td {
+            background: #e8f5f0;
+            font-weight: 600;
+        }
+        
+        tr.capex-row td {
+            background: #eff6ff;
+        }
+        
+        tr.opex-row td {
+            background: #ecfdf5;
+        }
+        
+        tr.total-row td {
+            background: #f0fdf4;
+            font-weight: 700;
+            border-top: 2px solid var(--primary);
+        }
+        
+        hr { 
+            border: none; 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, #c8e6d8, transparent); 
+            margin: 2rem 0; 
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .summary-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .summary-box.capex {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-color: #93c5fd;
+        }
+        
+        .summary-box.opex {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-color: #6ee7b7;
+        }
+        
+        .summary-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-box.capex h4 { color: #1e40af; }
+        .summary-box.opex h4 { color: #065f46; }
+        
+        .summary-box .amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .summary-box.capex .amount { color: #2563eb; }
+        .summary-box.opex .amount { color: #059669; }
+        
+        .summary-box .detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        @media print {
+            body { background: white; }
+            .header { 
+                background: var(--primary-dark) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .card { box-shadow: none; border: none; padding: 1rem 0; }
+            th, tr.highlight td, tr.capex-row td, tr.opex-row td, tr.total-row td, .summary-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        @page { margin: 1cm; size: A4; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://returna.com/wp-content/uploads/2023/09/returna-logo-web-white.png" alt="Returna">
+        </div>
+        <div class="header-title">Investor Materials — Februar 2026</div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>Budget — CAPEX / OPEX</h1>
+            <p class="subtitle">Staged Investment (Tranche 1 + 2)</p>
+            
+            <!-- Summary Boxes -->
+            <div class="summary-grid">
+                <div class="summary-box capex">
+                    <h4>📦 CAPEX (Fra investering)</h4>
+                    <div class="amount">112.000 kr</div>
+                    <div class="detail">Udvikler-laptop, Mac Mini + Mac Studio</div>
+                </div>
+                <div class="summary-box opex">
+                    <h4>🔄 OPEX (Drift — 24 mdr)</h4>
+                    <div class="amount">3.520.500 kr</div>
+                    <div class="detail">Løn, SaaS, rejser, marketing</div>
+                </div>
+            </div>
+
+            <hr />
+
+            <h2>CAPEX — Kapitaludgifter <span class="badge badge-capex">Engangsinvestering</span></h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Beskrivelse</th>
+                        <th>Beløb (DKK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="capex-row">
+                        <td><strong>Hardware — Ny</strong></td>
+                        <td>Udvikler-laptop, Mac Mini + Mac Studio (AI)</td>
+                        <td>112.000 kr</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td>Eksisterende Aktiver</td>
+                        <td>Laptops til founders + Mac Mini server <em>(allerede betalt)</em></td>
+                        <td>110.000 kr</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2"><strong>Total CAPEX (fra investering)</strong></td>
+                        <td><strong>112.000 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: -0.5rem;">
+                <em>Eksisterende aktiver (110.000 kr) er allerede betalt og indgår ikke i investeringsbudgettet.</em>
+            </p>
+
+            <hr />
+
+            <h2>OPEX — Driftsudgifter <span class="badge badge-opex">Månedlige/løbende</span></h2>
+
+            <h3>Fase 1: Q2 2026 — 1 Udvikler (3 mdr)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Månedlig</th>
+                        <th>3 mdr Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex-row"><td>Løn (1 udvikler)</td><td>65.600 kr</td><td>196.800 kr</td></tr>
+                    <tr class="opex-row"><td>Office / Tools / SaaS</td><td>4.500 kr</td><td>13.500 kr</td></tr>
+                    <tr class="opex-row"><td>Product / Dev Costs</td><td>4.000 kr</td><td>12.000 kr</td></tr>
+                    <tr class="opex-row"><td>Travel & Ops</td><td>3.700 kr</td><td>11.100 kr</td></tr>
+                    <tr class="opex-row"><td>Afdrag lån (Scandic IT)</td><td>3.700 kr</td><td>11.100 kr</td></tr>
+                    <tr class="total-row">
+                        <td><strong>Subtotal Fase 1</strong></td>
+                        <td><strong>81.500 kr/md</strong></td>
+                        <td><strong>244.500 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Fase 2: Q3 2026 → Q3 2027 — 2 Udviklere (15 mdr)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Månedlig</th>
+                        <th>15 mdr Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex-row"><td>Løn (2 udviklere)</td><td>131.200 kr</td><td>1.968.000 kr</td></tr>
+                    <tr class="opex-row"><td>Contractors / Freelancers</td><td>2.200 kr</td><td>33.000 kr</td></tr>
+                    <tr class="opex-row"><td>Office / Tools / SaaS</td><td>4.500 kr</td><td>67.500 kr</td></tr>
+                    <tr class="opex-row"><td>Marketing & Sales</td><td>3.000 kr</td><td>45.000 kr</td></tr>
+                    <tr class="opex-row"><td>Product / Dev Costs</td><td>4.000 kr</td><td>60.000 kr</td></tr>
+                    <tr class="opex-row"><td>Compliance / Legal</td><td>3.700 kr</td><td>55.500 kr</td></tr>
+                    <tr class="opex-row"><td>Travel & Ops</td><td>3.700 kr</td><td>55.500 kr</td></tr>
+                    <tr class="opex-row"><td>Afdrag lån (Scandic IT)</td><td>3.700 kr</td><td>55.500 kr</td></tr>
+                    <tr class="total-row">
+                        <td><strong>Subtotal Fase 2</strong></td>
+                        <td><strong>156.000 kr/md</strong></td>
+                        <td><strong>2.340.000 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Fase 3: Q4 2027 → Q1 2028 — 2 Udviklere (6 mdr, optionel)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Månedlig</th>
+                        <th>6 mdr Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex-row"><td>Løn (2 udviklere)</td><td>131.200 kr</td><td>787.200 kr</td></tr>
+                    <tr class="opex-row"><td>Contractors / Freelancers</td><td>2.200 kr</td><td>13.200 kr</td></tr>
+                    <tr class="opex-row"><td>Office / Tools / SaaS</td><td>4.500 kr</td><td>27.000 kr</td></tr>
+                    <tr class="opex-row"><td>Marketing & Sales</td><td>3.000 kr</td><td>18.000 kr</td></tr>
+                    <tr class="opex-row"><td>Product / Dev Costs</td><td>4.000 kr</td><td>24.000 kr</td></tr>
+                    <tr class="opex-row"><td>Compliance / Legal</td><td>3.700 kr</td><td>22.200 kr</td></tr>
+                    <tr class="opex-row"><td>Travel & Ops</td><td>3.700 kr</td><td>22.200 kr</td></tr>
+                    <tr class="opex-row"><td>Afdrag lån (Scandic IT)</td><td>3.700 kr</td><td>22.200 kr</td></tr>
+                    <tr class="total-row">
+                        <td><strong>Subtotal Fase 3</strong></td>
+                        <td><strong>156.000 kr/md</strong></td>
+                        <td><strong>936.000 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>Samlet Overblik — CAPEX + OPEX</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Kategori</th>
+                        <th>Beløb (DKK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="capex-row">
+                        <td><strong>CAPEX</strong></td>
+                        <td>Udvikler-laptop, Mac Mini + Mac Studio (AI)</td>
+                        <td>112.000 kr</td>
+                    </tr>
+                    <tr class="opex-row">
+                        <td rowspan="3"><strong>OPEX</strong></td>
+                        <td>Fase 1 (3 mdr, 1 dev)</td>
+                        <td>244.500 kr</td>
+                    </tr>
+                    <tr class="opex-row">
+                        <td>Fase 2 (15 mdr, 2 devs)</td>
+                        <td>2.340.000 kr</td>
+                    </tr>
+                    <tr class="opex-row">
+                        <td>Fase 3 (6 mdr, 2 devs) — optionel</td>
+                        <td>936.000 kr</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2"><strong>TOTAL (24 mdr)</strong></td>
+                        <td><strong>3.632.500 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>Investering vs. Forbrug</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenarie</th>
+                        <th>Investering</th>
+                        <th>CAPEX</th>
+                        <th>OPEX</th>
+                        <th>Buffer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td><strong>Tranche 1 (18 mdr)</strong></td>
+                        <td>3.000.000 kr</td>
+                        <td>112.000 kr</td>
+                        <td>2.584.500 kr</td>
+                        <td><strong>+303.500 kr</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tranche 1 + 2 (24 mdr)</strong></td>
+                        <td>4.500.000 kr</td>
+                        <td>112.000 kr</td>
+                        <td>3.520.500 kr</td>
+                        <td><strong>+867.500 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>OPEX Fordeling (Tranche 1 — 18 mdr)</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>18 mdr Total</th>
+                        <th>% af OPEX</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>👨‍💻 Løn (udvikling)</td><td>2.164.800 kr</td><td>83%</td></tr>
+                    <tr><td>🔧 Product / Dev Costs</td><td>72.000 kr</td><td>3%</td></tr>
+                    <tr><td>💼 Office / Tools / SaaS</td><td>81.000 kr</td><td>3%</td></tr>
+                    <tr><td>✈️ Travel & Ops</td><td>66.600 kr</td><td>3%</td></tr>
+                    <tr><td>⚖️ Compliance / Legal</td><td>55.500 kr</td><td>2%</td></tr>
+                    <tr><td>📢 Marketing & Sales</td><td>45.000 kr</td><td>2%</td></tr>
+                    <tr><td>🤝 Contractors / Freelancers</td><td>33.000 kr</td><td>1%</td></tr>
+                    <tr><td>💰 Afdrag lån (Scandic IT)</td><td>66.600 kr</td><td>3%</td></tr>
+                    <tr class="total-row">
+                        <td><strong>Total OPEX</strong></td>
+                        <td><strong>2.584.500 kr</strong></td>
+                        <td><strong>100%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
