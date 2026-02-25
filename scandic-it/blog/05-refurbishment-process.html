@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fra skraldespand til 2 års garanti: Sådan giver vi udtjente laptops nyt liv | Scandic IT</title>
+    <meta name="description" content="Se hvordan vi forvandler slidte Grade D laptops til næsten-nye Grade B enheder. Diagnostik, kvalitetsskins, reservedele og 2 års garanti — fordi vi stoler på vores proces.">
+    <meta name="keywords" content="refurbished laptop, renoveret computer, brugt laptop garanti, bæredygtig IT, cirkulær økonomi, laptop reparation">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1e40af;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --gray-700: #334155;
+            --gray-500: #64748b;
+            --gray-300: #cbd5e1;
+            --gray-100: #f1f5f9;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --orange: #f97316;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--gray-700);
+            line-height: 1.8;
+            background: var(--white);
+        }
+
+        .header {
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+        }
+
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--gray-300); }
+
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .meta {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .category {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, var(--orange) 0%, #ea580c 100%);
+            height: 300px;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 2.5rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 2rem 0 0.75rem;
+        }
+
+        p { margin-bottom: 1.25rem; }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        .transformation-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #d1fae5 100%);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .transformation-box h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .transformation-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .grade-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .grade-d {
+            background: #fecaca;
+            color: #b91c1c;
+        }
+
+        .grade-b {
+            background: #bbf7d0;
+            color: #15803d;
+        }
+
+        .grade-circle .letter {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .grade-circle .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .arrow-big {
+            font-size: 3rem;
+            color: var(--orange);
+        }
+
+        .highlight-box {
+            background: var(--gray-100);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .process-timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .step-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--orange);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .step-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: var(--gray-500);
+        }
+
+        .step-details {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 0.75rem;
+        }
+
+        .step-details ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ba-card {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .ba-card.before {
+            background: #fee2e2;
+        }
+
+        .ba-card.after {
+            background: #d1fae5;
+        }
+
+        .ba-card h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .ba-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .ba-card ul {
+            text-align: left;
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .ba-card li {
+            padding: 0.25rem 0;
+        }
+
+        .warranty-banner {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .warranty-banner .big-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--success);
+            line-height: 1;
+        }
+
+        .warranty-banner h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .warranty-banner p {
+            color: var(--gray-300);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .economics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .eco-card {
+            background: var(--gray-100);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .eco-card .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        .eco-card .label {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: var(--gray-100);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .tool-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-card h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .cta-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .quote-box {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: """;
+            font-size: 4rem;
+            color: var(--orange);
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+
+        .quote-box p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark);
+            padding-left: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box .author {
+            padding-left: 2.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-100);
+            margin-top: 3rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .before-after,
+            .tools-grid { grid-template-columns: 1fr; }
+            .economics-grid { grid-template-columns: 1fr; }
+            .transformation-visual { flex-direction: column; }
+            .arrow-big { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">Scandic<span>IT</span></a>
+        </div>
+    </header>
+
+    <article class="article">
+        <div class="meta">
+            <span class="category">Refurbishment</span>
+            <span>19. februar 2026 · 8 min læsetid</span>
+        </div>
+
+        <h1>Fra skraldespand til 2 års garanti: Sådan giver vi udtjente laptops nyt liv</h1>
+
+        <p class="lead">
+            De fleste ville kassere den. En ridset, slidt laptop med et ødelagt tastatur og en skærm fuld af fingeraftryk. Men vi ser noget andet: En maskine der med de rigtige hænder kan få 3-5 år mere på bagen — og ende med 2 års garanti hos en ny ejer.
+        </p>
+
+        <div class="featured-image">🔧✨</div>
+
+        <div class="transformation-box">
+            <h3>Transformationen</h3>
+            <div class="transformation-visual">
+                <div class="grade-circle grade-d">
+                    <span class="letter">D</span>
+                    <span class="label">Defekt</span>
+                </div>
+                <span class="arrow-big">→</span>
+                <div class="grade-circle grade-b">
+                    <span class="letter">B</span>
+                    <span class="label">God stand</span>
+                </div>
+            </div>
+            <p style="color: var(--gray-700); margin: 0;">
+                Vi gør det hver dag. Enheder andre ville kassere bliver til pålidelige computere med fuld garanti.
+            </p>
+        </div>
+
+        <h2>Hvorfor kassere, når man kan renovere?</h2>
+
+        <p>
+            Lad os være ærlige: Ikke alle enheder kan bære omkostningen ved en fuld remanufacturing-proces. En fem år gammel budget-laptop med lav spec er ikke værd at investere tusindvis af kroner i.
+        </p>
+
+        <p>
+            Men det betyder ikke, at den skal i skraldespanden.
+        </p>
+
+        <p>
+            Vi har udviklet en smart tilgang, der matcher investeringen med enhedens potentiale. Ved at kombinere præcis diagnostik, høj kvalitet skins, touch-up maling og høstede reservedele fra andre enheder, kan vi give ældre devices et nyt liv — uden at det koster en formue.
+        </p>
+
+        <div class="economics-grid">
+            <div class="eco-card">
+                <div class="number">60-80%</div>
+                <div class="label">Lavere omkostning end fuld renovering</div>
+            </div>
+            <div class="eco-card">
+                <div class="number">3-5 år</div>
+                <div class="label">Ekstra levetid for enheden</div>
+            </div>
+            <div class="eco-card">
+                <div class="number">2 år</div>
+                <div class="label">Garanti fordi vi stoler på vores proces</div>
+            </div>
+        </div>
+
+        <h2>Vores hemmelighed: Smart refurbishment</h2>
+
+        <p>
+            Hemmeligheden er at matche processen til enheden. Nogle enheder har brug for nye komponenter. Andre har bare brug for lidt kærlighed og de rigtige teknikker.
+        </p>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="icon">🔬</div>
+                <h4>Avanceret diagnostik</h4>
+                <p>Vi tester hver enhed grundigt for at identificere præcis hvad der skal fikses — og hvad der kan blive som det er.</p>
+            </div>
+            <div class="tool-card">
+                <div class="icon">🎨</div>
+                <h4>Premium skins</h4>
+                <p>Høj kvalitet vinyl skins der dækker ridser og slid. Enheden ser næsten ny ud — og er beskyttet mod fremtidigt slid.</p>
+            </div>
+            <div class="tool-card">
+                <div class="icon">🖌️</div>
+                <h4>Touch-up maling</h4>
+                <p>Professionel kosmetisk reparation af små skader. Buler, ridser og afskalninger forsvinder.</p>
+            </div>
+            <div class="tool-card">
+                <div class="icon">♻️</div>
+                <h4>Høstede reservedele</h4>
+                <p>Tastaturer, skærme og andre dele fra kasserede enheder får nyt liv i andre maskiner. Cirkulær økonomi i praksis.</p>
+            </div>
+        </div>
+
+        <h2>Fra D til B: Processen trin for trin</h2>
+
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-marker">1</div>
+                <div class="step-content">
+                    <h4>Modtagelse & vurdering</h4>
+                    <p>Enheden ankommer og vurderes. Hvad er potentialet? Hvad er omkostningen ved at renovere?</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Visual inspektion af chassis, skærm, tastatur</li>
+                            <li>Kategorisering: fuld renovering, smart refurb, eller recycling</li>
+                            <li>Estimat af værdi efter renovering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">2</div>
+                <div class="step-content">
+                    <h4>Diagnostik</h4>
+                    <p>Grundig test af alle komponenter. Batteri, skærm, tastatur, touchpad, porte, wifi — alt tjekkes.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Automatiseret hardware-test (45+ checkpunkter)</li>
+                            <li>Batterisundhed og cyklusser</li>
+                            <li>Stress-test af CPU/GPU</li>
+                            <li>Dead pixel detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">3</div>
+                <div class="step-content">
+                    <h4>Komponentudskiftning</h4>
+                    <p>Defekte dele udskiftes med høstede reservedele fra andre enheder eller nye komponenter hvor nødvendigt.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Tastaturudskiftning (hyppigste reparation)</li>
+                            <li>Nyt batteri hvis sundhed &lt;80%</li>
+                            <li>RAM/SSD opgradering hvor det giver mening</li>
+                            <li>Skærm, hængsler, porte efter behov</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">4</div>
+                <div class="step-content">
+                    <h4>Kosmetisk renovering</h4>
+                    <p>Her sker magien. Enheden transformeres fra slidt til næsten-ny.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Grundig rengøring af alle overflader</li>
+                            <li>Touch-up af ridser og skader</li>
+                            <li>Premium skin på låg og palmrest</li>
+                            <li>Ny polish af skærm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">5</div>
+                <div class="step-content">
+                    <h4>Software & sikkerhed</h4>
+                    <p>Certificeret datasletning efterfulgt af frisk OS-installation.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>NIST 800-88 certificeret sletning</li>
+                            <li>Frisk Windows/macOS installation</li>
+                            <li>Driver-opdateringer</li>
+                            <li>BIOS-opdatering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">6</div>
+                <div class="step-content">
+                    <h4>Kvalitetskontrol</h4>
+                    <p>Endnu en runde tests for at sikre alt fungerer perfekt.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Fuld funktionstest (gentagelse af step 2)</li>
+                            <li>Kosmetisk inspektion</li>
+                            <li>Burn-in test (4+ timer)</li>
+                            <li>Grade-tildeling (A/B/C)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-marker">7</div>
+                <div class="step-content">
+                    <h4>Salg med garanti</h4>
+                    <p>Enheden listes på vores online platform med 2 års garanti og sælges direkte til forbrugere.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Før og efter</h2>
+
+        <div class="before-after">
+            <div class="ba-card before">
+                <div class="icon">😟</div>
+                <h4>Før (Grade D)</h4>
+                <ul>
+                    <li>❌ Slidte taster, nogle virker ikke</li>
+                    <li>❌ Ridser over hele låget</li>
+                    <li>❌ Batteri holder 1 time</li>
+                    <li>❌ Fedtede mærker på skærm</li>
+                    <li>❌ Langsom, fyldt med gamle filer</li>
+                    <li>❌ Markedsværdi: ~500 kr</li>
+                </ul>
+            </div>
+            <div class="ba-card after">
+                <div class="icon">😍</div>
+                <h4>Efter (Grade B)</h4>
+                <ul>
+                    <li>✅ Nyt tastatur fra donor-enhed</li>
+                    <li>✅ Premium skin — ser ny ud</li>
+                    <li>✅ Nyt batteri, 5+ timer</li>
+                    <li>✅ Poleret, klar skærm</li>
+                    <li>✅ Frisk Windows, hurtig</li>
+                    <li>✅ Markedsværdi: ~2.500 kr</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>💡 Regnestykket:</strong> En investering på 800-1.200 kr i dele og arbejdstid kan forvandle en 500 kr enhed til en 2.500 kr enhed. Det er god business — og godt for planeten.
+        </div>
+
+        <h2>Høstede reservedele: Cirkulær økonomi i praksis</h2>
+
+        <p>
+            Ikke alle enheder kan reddes. Nogle er for gamle, for beskadigede, eller har for lav spec til at være salgbare. Men selv disse enheder har værdi.
+        </p>
+
+        <p>
+            Vi "høster" brugbare dele fra kasserede enheder:
+        </p>
+
+        <ul>
+            <li><strong>Tastaturer</strong> — den hyppigst udskiftede del</li>
+            <li><strong>Skærme</strong> — hvis panelet er intakt</li>
+            <li><strong>Batterier</strong> — hvis de stadig har god kapacitet</li>
+            <li><strong>RAM og SSD</strong> — til opgraderinger</li>
+            <li><strong>Hængsler, porte, fans</strong> — alt der virker</li>
+        </ul>
+
+        <p>
+            Disse dele får nyt liv i andre enheder. Det reducerer spild, sænker vores omkostninger, og gør det muligt at renovere enheder der ellers ikke ville være rentable.
+        </p>
+
+        <div class="warranty-banner">
+            <div class="big-number">2 år</div>
+            <h3>Garanti — fordi vi stoler på vores proces</h3>
+            <p>
+                Vi giver 2 års garanti på alle renoverede enheder. Det er ikke et marketing-stunt. Det er fordi vi ved, at vores proces virker. Vi tester grundigt, reparerer ordentligt, og står ved vores arbejde.
+            </p>
+        </div>
+
+        <h2>Hvorfor 2 års garanti?</h2>
+
+        <p>
+            Mange er skeptiske over for refurbished elektronik. "Holder det?" "Hvad hvis noget går i stykker?" Vi forstår det.
+        </p>
+
+        <p>
+            Derfor giver vi 2 års garanti. Det sender et klart signal:
+        </p>
+
+        <div class="success-box">
+            <ul style="margin-bottom: 0;">
+                <li><strong>Vi tror på vores produkt</strong> — hvis vi ikke gjorde, ville garantien ruinere os</li>
+                <li><strong>Vi tester grundigt</strong> — vi finder problemerne før du gør</li>
+                <li><strong>Vi bruger kvalitetsdele</strong> — ikke billige knock-offs</li>
+                <li><strong>Vi reparerer ordentligt</strong> — ikke hurtige fixes der holder i 3 måneder</li>
+            </ul>
+        </div>
+
+        <p>
+            I praksis ser vi meget få garantisager. Vores grundige proces betyder, at de fleste problemer fanges inden enheden forlader vores værksted.
+        </p>
+
+        <h2>Direkte til forbrugeren</h2>
+
+        <p>
+            Vores renoverede enheder sælges direkte til forbrugere via vores online platform. Ingen mellemled, ingen forhandlere — bare os og dig.
+        </p>
+
+        <p>
+            Det giver flere fordele:
+        </p>
+
+        <ul>
+            <li><strong>Bedre priser</strong> — ingen mellemled-markup</li>
+            <li><strong>Direkte support</strong> — du taler med dem der har renoveret enheden</li>
+            <li><strong>Fuld sporbarhed</strong> — vi ved præcis hvad der er lavet på hver enhed</li>
+            <li><strong>Hurtig garanti-håndtering</strong> — ingen ping-pong mellem forhandler og producent</li>
+        </ul>
+
+        <div class="quote-box">
+            <p>Vi ville ikke selv købe en brugt laptop uden garanti. Så hvorfor skulle vi forvente det af vores kunder?</p>
+            <span class="author">— Filosofien bag vores 2-års garanti</span>
+        </div>
+
+        <h2>Hvem køber refurbished?</h2>
+
+        <p>
+            Vores kunder er mangfoldige, men de har én ting til fælles: De vil have kvalitet til en fair pris.
+        </p>
+
+        <ul>
+            <li><strong>Studerende</strong> — en god laptop til studiebudget</li>
+            <li><strong>Familier</strong> — computer til børnene uden at betale fuld pris</li>
+            <li><strong>Freelancere</strong> — backup-maskine eller sekundær arbejdsstation</li>
+            <li><strong>Miljøbevidste</strong> — vil gerne købe bæredygtigt</li>
+            <li><strong>Prisbevidste</strong> — ser værdien i refurbished frem for nyt</li>
+        </ul>
+
+        <h2>Miljøgevinsten</h2>
+
+        <p>
+            At forlænge en laptops levetid med 3-5 år har en reel miljøeffekt:
+        </p>
+
+        <div class="economics-grid">
+            <div class="eco-card">
+                <div class="number">300-400 kg</div>
+                <div class="label">CO₂ sparet per enhed vs. ny produktion</div>
+            </div>
+            <div class="eco-card">
+                <div class="number">1.200 L</div>
+                <div class="label">Vand sparet per enhed</div>
+            </div>
+            <div class="eco-card">
+                <div class="number">85%</div>
+                <div class="label">Af materialerne bevares vs. recycling</div>
+            </div>
+        </div>
+
+        <p>
+            Refurbishment er ikke bare økonomisk smart — det er den mest bæredygtige måde at håndtere elektronik på. Bedre end recycling, bedre end at købe nyt, bedre end at lade den ligge i skuffen.
+        </p>
+
+        <div class="cta-box">
+            <h3>Har du brug for en pålidelig laptop?</h3>
+            <p>Vores renoverede enheder har 2 års garanti og er testet af professionelle teknikere. Kvalitet til en fair pris.</p>
+            <a href="https://scandic-it.com" class="cta-button">Se vores udvalg →</a>
+        </div>
+
+        <h2>For virksomheder: Lad os renovere jeres udstyr</h2>
+
+        <p>
+            Har din virksomhed udtjent IT-udstyr? I stedet for at betale for bortskaffelse kan vi renovere og videresælge enhederne — og I får en del af værdien tilbage.
+        </p>
+
+        <ul>
+            <li>Vi henter udstyret</li>
+            <li>Vi sletter alle data certificeret</li>
+            <li>Vi renoverer og sælger videre</li>
+            <li>I får afregning baseret på salgsværdi</li>
+        </ul>
+
+        <p>
+            Det er ITAD, der faktisk giver mening — for jer, for miljøet, og for de nye ejere af jeres gamle udstyr.
+        </p>
+
+        <div class="author">
+            <div class="author-avatar">SI</div>
+            <div class="author-info">
+                <h4>Scandic IT</h4>
+                <p>Vi har renoveret og solgt tusindvis af enheder med 2 års garanti siden 2016. Ingen returnerer til skraldespanden.</p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
