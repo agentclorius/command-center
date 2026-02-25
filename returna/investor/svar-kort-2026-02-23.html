@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svar på Investor Feedback - Returna ApS</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #1a1a1a;
+        }
+        h1 { color: #00A651; margin-bottom: 5px; }
+        h2 { color: #333; border-bottom: 2px solid #00A651; padding-bottom: 5px; margin-top: 30px; }
+        h3 { color: #00A651; }
+        .header { margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+        .header p { margin: 5px 0; color: #666; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #00A651; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        ul { padding-left: 20px; }
+        li { margin: 8px 0; }
+        .accepted { color: #00A651; }
+        .change { color: #e67e22; }
+        strong { color: #00A651; }
+        .note { background: #f8f9fa; border-left: 4px solid #e67e22; padding: 12px 16px; margin: 15px 0; font-size: 0.95em; }
+        
+        /* Print styles */
+        @media print {
+            body {
+                padding: 15px 20px;
+                font-size: 10pt;
+                max-width: 100%;
+                line-height: 1.4;
+            }
+            .header {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            h1 { font-size: 18pt; margin-bottom: 3px; }
+            h2 { 
+                font-size: 13pt;
+                page-break-after: avoid;
+                margin-top: 15px;
+                margin-bottom: 8px;
+            }
+            h3 {
+                font-size: 11pt;
+                page-break-after: avoid;
+                margin-top: 12px;
+                margin-bottom: 5px;
+            }
+            table {
+                page-break-inside: avoid;
+                font-size: 9pt;
+                margin: 8px 0;
+            }
+            th, td { padding: 6px 8px; }
+            ul { margin: 8px 0; }
+            li { margin: 4px 0; }
+            .note {
+                page-break-inside: avoid;
+                padding: 8px 12px;
+                margin: 10px 0;
+                font-size: 9pt;
+            }
+            p { margin: 6px 0; }
+            .page-break { page-break-before: always; }
+        }
+        
+        @page {
+            margin: 1.5cm;
+            size: A4;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Svar på Investor Feedback</h1>
+        <p><strong>Til:</strong> Allan Højbak / Jens Ole Andersen</p>
+        <p><strong>Fra:</strong> Returna ApS</p>
+        <p><strong>Dato:</strong> 23. februar 2026</p>
+    </div>
+
+    <h2 class="accepted">✓ Accepteret</h2>
+    <ul>
+        <li>Alle forudsætninger (IP, 500K til Scandic IT, lønramme, budget)</li>
+        <li>Udvid til "alle elektroniske devices"</li>
+        <li>Proportional forkøbsret</li>
+        <li>Tilføj misbrug (alkohol/stof/spil) til §10</li>
+        <li>50% soliditetsgrad før udbytte</li>
+        <li>FSR-revisorer: gennemsnitlig værdi ved uenighed</li>
+        <li>Værdiansættelseseksempel udarbejdes</li>
+        <li>Afhændelse af Scandic IT sker parallelt med investeringen og er ikke en forudsætning for første tranche</li>
+        <li>20% stemmerettigheder fra første tranche (forudsat bindende forpligtelse på alle trancher)</li>
+    </ul>
+
+    <h2 class="change page-break">⚠ Ændringsforslag</h2>
+
+    <h3>1. Bindende tranche-struktur</h3>
+    
+    <div class="note">
+        <strong>Baggrund:</strong> Den nuværende struktur giver investor en <em>ret</em>, men ikke en <em>forpligtelse</em>, til at investere — og han kan undlade "uanset årsag". Samtidig kan der ikke ske andre kapitaludvidelser i perioden. Det betyder, at Returna potentielt kan stå med kun én tranche (1M DKK) og ingen mulighed for at hente kapital andetsteds i op til 3 år. Vi har brug for kapitalforudsigelighed for at kunne budgettere og eksekvere på vores strategi.
+    </div>
+    
+    <p>Forslag:</p>
+    <table>
+        <tr><th>Tranche</th><th>Beløb</th><th>Tidspunkt</th><th>Forpligtelse</th></tr>
+        <tr><td>1</td><td>1.5M DKK</td><td>Underskrift</td><td>Bindende</td></tr>
+        <tr><td>2</td><td>1.5M DKK</td><td>Måned 6</td><td>Bindende (MAC)</td></tr>
+        <tr><td>3</td><td>1.5M DKK</td><td>Måned 12</td><td>Bindende (MAC)</td></tr>
+        <tr><td>4</td><td>1.5M DKK</td><td>Måned 18</td><td>Bindende (MAC)</td></tr>
+    </table>
+    <p>Investor kan kun undlade tranche ved <strong>Material Adverse Change (MAC)</strong>, defineret som:</p>
+    <ul>
+        <li>Væsentlig retssag anlagt mod selskabet</li>
+        <li>Insolvens, konkurs eller rekonstruktionsbehandling</li>
+    </ul>
+    
+    <p><strong>Ved manglende betaling:</strong> Betales tranche ikke inden 30 dage efter forfald:</p>
+    <ul>
+        <li>Investors stemmerettigheder reduceres til faktisk indbetalt ejerandel</li>
+        <li>Begrænsningen på andre kapitaludvidelser bortfalder</li>
+        <li>Øvrige kapitalejere bevarer tilbagekøbsret jf. punkt 2.5</li>
+    </ul>
+
+    <h3>2. Fast værdiansættelse</h3>
+    <p>Alle trancher tegnes til kurs baseret på den aftalte værdiansættelse på 30M DKK. Punkt 2.4 (kursjustering ved faldende værdiansættelse) udgår.</p>
+
+    <h3>3. Dødsfald-rabat</h3>
+    <p>Behold nuværende 50% (ikke 66%).</p>
+
+    <h3>4. Præcisering af vetoret (punkt 6)</h3>
+    <p>Vi accepterer vetoret på punkt h-o, men ønsker præciseringer for at sikre normal drift:</p>
+    
+    <table>
+        <tr><th>Punkt</th><th>Nuværende</th><th>Foreslået præcisering</th></tr>
+        <tr>
+            <td><strong>j</strong></td>
+            <td>Væsentlige ændringer i strategi</td>
+            <td>Ændringer i selskabets <em>kerneforretning</em> (ikke løbende strategijusteringer)</td>
+        </tr>
+        <tr>
+            <td><strong>k</strong></td>
+            <td>Nye/opgive markeder</td>
+            <td>Etablering af datterselskaber eller filialer i nye lande (ikke salgsfokus på nye kundesegmenter)</td>
+        </tr>
+        <tr>
+            <td><strong>o</strong></td>
+            <td>Øvrige væsentlige aftaler</td>
+            <td>Aftaler med værdi over 500.000 DKK eller løbetid over 24 måneder</td>
+        </tr>
+    </table>
+    
+    <p><strong>Alternativt:</strong> Beslutninger under 100.000 DKK / 6 måneders løbetid klassificeres som driftsbeslutninger og kræver ikke særskilt godkendelse.</p>
+
+    <h2>Til afklaring</h2>
+    <ul>
+        <li>Direktionssekretær: Rolle og omfang?</li>
+        <li>Punkt 8 H (medsalgspligt): Kræver juridisk drøftelse.</li>
+        <li>Værneting: Åben for voldgift.</li>
+    </ul>
+
+    <hr style="margin-top: 40px;">
+    <p><em>Vi ser frem til at finde en løsning der fungerer for begge parter.</em></p>
+    <p><strong>Returna ApS</strong></p>
+</body>
+</html>
