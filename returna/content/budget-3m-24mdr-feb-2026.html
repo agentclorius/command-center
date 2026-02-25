@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returna — 3M Budget (24 mdr)</title>
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008C44;
+            --accent: #26A69A;
+            --bg-light: #f8faf9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.7; 
+            min-height: 100vh; 
+        }
+        
+        .header {
+            background: #064e3b;
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img { height: 32px; width: auto; }
+        .header-title { font-size: 0.9rem; opacity: 0.9; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        
+        .card {
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        h1 { color: var(--primary-dark); font-size: 2rem; margin-bottom: 0.25rem; font-weight: 700; }
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; }
+        
+        h2 { 
+            color: var(--primary-dark); 
+            font-size: 1.3rem; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem; 
+            border-bottom: 2px solid #e8f5f0; 
+        }
+        
+        h3 { color: var(--accent); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 1rem 0 1.5rem 0; 
+            font-size: 0.95rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+        
+        th { 
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); 
+            color: white; 
+            padding: 0.9rem 1rem; 
+            text-align: left; 
+            font-weight: 600; 
+        }
+        
+        td { border-bottom: 1px solid #e8f5f0; padding: 0.8rem 1rem; }
+        tr:hover td { background: #f0faf5; }
+        tr:last-child td { border-bottom: none; }
+        
+        tr.highlight td { background: #e8f5f0; font-weight: 600; }
+        tr.capex td { background: #eff6ff; }
+        tr.opex td { background: #ecfdf5; }
+        tr.total td { background: #f0fdf4; font-weight: 700; border-top: 2px solid var(--primary); }
+        
+        hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #c8e6d8, transparent); margin: 2rem 0; }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .summary-box .label { font-size: 0.9rem; color: #1e40af; text-transform: uppercase; letter-spacing: 0.05em; }
+        .summary-box .amount { font-size: 2.5rem; font-weight: 700; color: #2563eb; }
+        .summary-box .detail { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        @media print {
+            body { background: white; font-size: 11pt; }
+            .header { background: var(--primary-dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 1rem 1.5rem; }
+            .container { padding: 1rem; max-width: 100%; }
+            .card { box-shadow: none; border: none; padding: 0.5rem 0; }
+            h1 { font-size: 1.5rem; margin-bottom: 0.2rem; }
+            h2 { font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+            h3 { font-size: 1rem; margin-top: 0.8rem; }
+            .subtitle { margin-bottom: 1rem; }
+            .summary-box { padding: 1rem; margin: 1rem 0; }
+            .summary-box .amount { font-size: 2rem; }
+            .note { padding: 0.7rem 1rem; margin: 0.8rem 0; }
+            table { font-size: 10pt; margin: 0.5rem 0 1rem 0; }
+            th, td { padding: 0.5rem 0.7rem; }
+            hr { margin: 1rem 0; }
+            tr.capex td, tr.opex td, tr.total td, tr.highlight td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        @page { margin: 1.5cm; size: A4; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://returna.com/wp-content/uploads/2023/09/returna-logo-web-white.png" alt="Returna">
+        </div>
+        <div class="header-title">Investor Materials — Februar 2026</div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>24 Måneders Budget</h1>
+            <p class="subtitle">Investering: 3.000.000 kr (10% ejerandel)</p>
+            
+            <div class="summary-box">
+                <div class="label">Total Investering</div>
+                <div class="amount">3.000.000 kr</div>
+                <div class="detail">Ejerandel: 10% · Runway: 24 måneder</div>
+            </div>
+
+            <div class="note">
+                <strong>Lean budget:</strong> 12 måneder med 1 udvikler, derefter 12 måneder med 2 udviklere.
+            </div>
+
+            <hr />
+
+            <h2>CAPEX — Kapitaludgifter</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Beskrivelse</th>
+                        <th>Beløb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="capex">
+                        <td><strong>Hardware — Ny</strong></td>
+                        <td>Udvikler-laptop, Mac Mini + Mac Studio (AI)</td>
+                        <td><strong>112.000 kr</strong></td>
+                    </tr>
+                    <tr style="opacity: 0.7;">
+                        <td>Eksisterende hardware</td>
+                        <td>Laptops til founders + Mac Mini server <em>(allerede betalt)</em></td>
+                        <td>110.000 kr</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                <em>Eksisterende hardware (110.000 kr) er allerede betalt og indgår ikke i investeringsbudgettet.</em>
+            </p>
+
+            <hr />
+
+            <h2>OPEX — Driftsudgifter</h2>
+
+            <h3>Fase 1: Q2 2026 → Q1 2027 — 1 Udvikler (12 mdr)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Månedlig</th>
+                        <th>12 mdr Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex"><td>Løn (1 udvikler)</td><td>65.600 kr</td><td>787.200 kr</td></tr>
+                    <tr class="opex"><td>Office / Tools / SaaS</td><td>4.500 kr</td><td>54.000 kr</td></tr>
+                    <tr class="opex"><td>Product / Dev Costs</td><td>4.000 kr</td><td>48.000 kr</td></tr>
+                    <tr class="opex"><td>Compliance / Legal</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="opex"><td>Travel & Ops</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="opex"><td>Afdrag lån (Scandic IT)</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="total"><td><strong>Subtotal Fase 1</strong></td><td><strong>85.200 kr</strong></td><td><strong>1.022.400 kr</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>Fase 2: Q2 2027 → Q1 2028 — 2 Udviklere (12 mdr)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Månedlig</th>
+                        <th>12 mdr Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex"><td>Løn (2 udviklere)</td><td>131.200 kr</td><td>1.574.400 kr</td></tr>
+                    <tr class="opex"><td>Contractors / Freelancers</td><td>2.200 kr</td><td>26.400 kr</td></tr>
+                    <tr class="opex"><td>Office / Tools / SaaS</td><td>4.500 kr</td><td>54.000 kr</td></tr>
+                    <tr class="opex"><td>Marketing & Sales</td><td>3.000 kr</td><td>36.000 kr</td></tr>
+                    <tr class="opex"><td>Product / Dev Costs</td><td>4.000 kr</td><td>48.000 kr</td></tr>
+                    <tr class="opex"><td>Compliance / Legal</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="opex"><td>Travel & Ops</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="opex"><td>Afdrag lån (Scandic IT)</td><td>3.700 kr</td><td>44.400 kr</td></tr>
+                    <tr class="total"><td><strong>Subtotal Fase 2</strong></td><td><strong>156.000 kr</strong></td><td><strong>1.872.000 kr</strong></td></tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>24 Måneders Overblik</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Periode</th>
+                        <th>Varighed</th>
+                        <th>Månedlig</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="opex">
+                        <td>Q2 2026 → Q1 2027</td>
+                        <td>12 mdr (1 dev)</td>
+                        <td>85.200 kr</td>
+                        <td>1.022.400 kr</td>
+                    </tr>
+                    <tr class="opex">
+                        <td>Q2 2027 → Q1 2028</td>
+                        <td>12 mdr (2 devs)</td>
+                        <td>156.000 kr</td>
+                        <td>1.872.000 kr</td>
+                    </tr>
+                    <tr class="capex">
+                        <td colspan="3">CAPEX (Hardware)</td>
+                        <td>112.000 kr</td>
+                    </tr>
+                    <tr class="total">
+                        <td colspan="3"><strong>Total Forbrug (24 mdr)</strong></td>
+                        <td><strong>3.006.400 kr</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>Investering vs. Forbrug</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Beløb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Investering</td><td>3.000.000 kr</td></tr>
+                    <tr><td>CAPEX</td><td>112.000 kr</td></tr>
+                    <tr><td>OPEX (24 mdr)</td><td>2.894.400 kr</td></tr>
+                    <tr class="total"><td><strong>Buffer</strong></td><td><strong>-6.400 kr</strong></td></tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2 style="page-break-before: always;">Sammenligning: 3M vs 4.5M</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>3.000.000 kr</th>
+                        <th>4.500.000 kr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ejerandel</td><td>10%</td><td>15%</td></tr>
+                    <tr><td>Runway</td><td>24 mdr</td><td>24 mdr</td></tr>
+                    <tr><td>1 udvikler periode</td><td>12 mdr</td><td>3 mdr</td></tr>
+                    <tr><td>2 udviklere periode</td><td>12 mdr</td><td>21 mdr</td></tr>
+                    <tr><td>Buffer</td><td>-6.400 kr</td><td>+867.500 kr</td></tr>
+                    <tr class="highlight"><td><strong>Risiko</strong></td><td><strong>Højere</strong></td><td><strong>Lavere</strong></td></tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
