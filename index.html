@@ -389,118 +389,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Access Control -->
-    <style>
-        #access-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: #0a0a0f;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .access-box {
-            text-align: center;
-            max-width: 400px;
-            padding: 48px;
-        }
-        .access-box h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-            border: none;
-        }
-        .access-box p {
-            font-family: 'Inter', sans-serif;
-            color: #8888a0;
-            margin-bottom: 32px;
-            font-size: 14px;
-        }
-        .access-box input {
-            width: 100%;
-            padding: 14px 20px;
-            background: #12121a;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-        .access-box input:focus {
-            outline: none;
-            border-color: #10b981;
-        }
-        .access-box button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            margin-top: 16px;
-            transition: opacity 0.2s;
-        }
-        .access-box button:hover { opacity: 0.9; }
-        .access-error {
-            color: #ef4444;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            margin-top: 16px;
-            display: none;
-        }
-        .access-lock {
-            font-size: 48px;
-            margin-bottom: 24px;
-        }
-    </style>
-
-    <div id="access-overlay">
-        <div class="access-box">
-            <div class="access-lock">🔒</div>
-            <h2>Command Center</h2>
-            <p>Enter access code to continue</p>
-            <input type="password" id="access-input" placeholder="Access code" onkeypress="if(event.key==='Enter')checkAccess()">
-            <button onclick="checkAccess()">Unlock</button>
-            <p class="access-error" id="access-error">Incorrect access code</p>
-        </div>
-    </div>
-
-    <script>
-    const validCodes = ['Clorius2026'];
-    function checkAccess() {
-        const input = document.getElementById('access-input').value;
-        if (validCodes.includes(input)) {
-            document.getElementById('access-overlay').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            sessionStorage.setItem('cc_auth', input);
-        } else {
-            document.getElementById('access-error').style.display = 'block';
-            document.getElementById('access-input').value = '';
-        }
-    }
-    // Auto-unlock if already authenticated this session
-    (function() {
-        const key = sessionStorage.getItem('cc_auth');
-        if (key && validCodes.includes(key)) {
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('access-overlay').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            });
-        }
-    })();
-    </script>
-
-    <div id="main-content" style="display:none">
     <div class="bg-gradient"></div>
     
     <div class="container">
@@ -617,13 +505,9 @@
         <section>
             <h3 class="section-title">Quick Access</h3>
             <div class="quick-links">
-                <a href="https://pipeline.returna.com" target="_blank" class="quick-link">
+                <a href="returna.html#pipeline" class="quick-link">
                     <span class="quick-link-icon">📊</span>
                     Partner Pipeline
-                </a>
-                <a href="https://pipeline.returna.com/coverage-map.html" target="_blank" class="quick-link">
-                    <span class="quick-link-icon">🗺️</span>
-                    Coverage Map
                 </a>
                 <a href="returna.html#materials" class="quick-link">
                     <span class="quick-link-icon">📁</span>
@@ -664,6 +548,5 @@
         updateTime();
         setInterval(updateTime, 60000);
     </script>
-    </div>
 </body>
 </html>
