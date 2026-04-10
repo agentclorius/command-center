@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Returna — GBT Partner Waterfall</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#1A2117;--card:#2A3225;--accent:#A9FF9B;--text:#F4F7F3;--text2:#A3B09A;--muted:#6E7D68;--border:rgba(169,255,155,0.08);--amber:#FFBC7D}body{font-family:'Inter',sans-serif;background:radial-gradient(circle at top center, rgba(169,255,155,0.05), transparent 30%),var(--bg);color:var(--text);padding:48px 64px}.page{max-width:1160px;margin:0 auto}.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px}.header h1{font-size:2.3rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}.header h1 span{color:var(--accent)}.header .meta{font-size:.78rem;color:var(--muted);text-align:right;line-height:1.6}.subtitle{font-size:1rem;color:var(--text2);margin-top:10px;max-width:670px;line-height:1.55}.hero{background:rgba(169,255,155,0.08);border:1px solid rgba(169,255,155,0.18);border-radius:18px;padding:22px 24px;margin-bottom:24px}.hero p{font-size:1rem;color:var(--accent);font-weight:600;line-height:1.55}.flow{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:24px}.pill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid var(--border);font-size:.8rem;color:var(--text2)}.pill strong{color:var(--accent)}.arrow{color:var(--muted);align-self:center}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:24px}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px}.card h3{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}.card p,.card li{font-size:.85rem;color:var(--text2);line-height:1.65}.card ul{list-style:none}.card li{padding:4px 0 4px 16px;position:relative}.card li::before{content:'→';position:absolute;left:0;color:var(--muted)}.section-title{font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:28px 0 12px}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}th,td{padding:12px 14px;text-align:left;vertical-align:top;font-size:.82rem}th{background:rgba(169,255,155,0.05);color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}td{border-top:1px solid var(--border);color:var(--text2)}td:first-child{color:var(--text);font-weight:600;width:19%}.summary{margin-top:24px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--amber);border-radius:0 16px 16px 0;padding:22px 24px}.summary p{font-size:.9rem;color:var(--text2);line-height:1.75}.footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between}.footer span{font-size:.72rem;color:var(--muted)}</style>
+</head>
+<body><div class="page">
+<div class="header"><div><h1>Partner <span>Waterfall</span></h1><p class="subtitle">How work, routing, and payout should flow across Returna, Onitio, and Return Hubs depending on incident type.</p></div><div class="meta">Returna — Internal<br>April 2026<br><strong style="color:var(--accent)">WORKING DRAFT</strong></div></div>
+<div class="hero"><p>Core principle: GBT pays Returna once. Returna then routes work and payout to the right delivery partners based on the actual incident flow.</p></div>
+<div class="flow"><div class="pill"><strong>GBT</strong><br>Pays pooled fee</div><div class="arrow">→</div><div class="pill"><strong>Returna</strong><br>Routes and governs</div><div class="arrow">→</div><div class="pill">Onitio<br>Field event</div><div class="arrow">/</div><div class="pill">Return Hub<br>Value event</div></div>
+<div class="cards">
+<div class="card"><h3>Customer layer</h3><ul><li>GBT contracts with Returna</li><li>Returna owns reporting and governance</li><li>Annual pooled commercial structure</li></ul></div>
+<div class="card"><h3>Onitio</h3><ul><li>Paid per field-service event</li><li>Owns onsite execution when dispatched</li><li>Does not own the program layer</li></ul></div>
+<div class="card"><h3>Return Hubs</h3><ul><li>Paid per contributed value event</li><li>Parts, depot, logistics, and recovery</li><li>No default passive revenue share</li></ul></div>
+</div>
+<div class="section-title">Incident-type waterfall</div>
+<table>
+<tr><th>Incident type</th><th>Operational route</th><th>Onitio paid?</th><th>Hub paid?</th><th>Typical hub value events</th></tr>
+<tr><td>Remote triage only</td><td>Case resolved without physical intervention</td><td>Sometimes, if remote support is billable</td><td>No</td><td>None</td></tr>
+<tr><td>Onsite repair, no hub</td><td>Returna dispatches Onitio, issue resolved onsite</td><td>Yes</td><td>No</td><td>None</td></tr>
+<tr><td>Onsite repair with hub-supplied part</td><td>Hub supplies approved part, Onitio completes repair</td><td>Yes</td><td>Yes</td><td>Part supply, handling, dispatch</td></tr>
+<tr><td>Depot / return-to-hub repair</td><td>Case routed to hub for bench or depot repair</td><td>Sometimes</td><td>Yes</td><td>Intake, repair, QA, logistics</td></tr>
+<tr><td>Non-repair / swap / recovery / EOL</td><td>Repair not economical, case moves to recovery or end-of-life route</td><td>Sometimes</td><td>Yes</td><td>Intake, recovery, parts harvest, disposition</td></tr>
+</table>
+<div class="section-title">Payout philosophy</div>
+<div class="cards">
+<div class="card"><h3>Returna retains</h3><ul><li>Contract risk and pricing logic</li><li>Scope management and approvals</li><li>Governance and orchestration margin</li></ul></div>
+<div class="card"><h3>Onitio gets paid for</h3><ul><li>Field-service labor</li><li>Completed onsite event</li><li>Approved service activity</li></ul></div>
+<div class="card"><h3>Hubs get paid for</h3><ul><li>Part supplied</li><li>Handling and fulfilment</li><li>Depot work</li><li>Recovery and logistics</li></ul></div>
+</div>
+<div class="summary"><p><strong style="color:var(--text)">Best working model:</strong> Returna owns the enterprise relationship and routes work by incident type. Onitio is paid per field-service event. Return Hubs are paid only when they contribute operational value. This preserves clean enterprise ownership while still giving hubs visible economics.</p></div>
+<div class="footer"><span>Returna — GBT Partner Waterfall</span><span>Internal · April 2026</span></div>
+</div></body></html>
