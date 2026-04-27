@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Device Handling — Full-Circle Process</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  .page { max-width: 960px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0b1220 0%, #0f3d77 100%);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 40px -20px rgba(11, 18, 32, 0.4);
+  }
+  header.hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  header.hero h1 {
+    font-size: 24px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  header.hero .meta {
+    color: #cbd5e1;
+    font-size: 13px;
+  }
+  .content {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px 32px;
+  }
+  .content h1 { font-size: 22px; margin-top: 28px; color: #0f3d77; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+  .content h1:first-child { margin-top: 0; }
+  .content h2 { font-size: 17px; margin-top: 22px; color: #0f3d77; }
+  .content h3 { font-size: 14px; margin-top: 18px; color: #334155; text-transform: uppercase; letter-spacing: 0.05em; }
+  .content p, .content li { font-size: 14px; color: #334155; }
+  .content code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .content pre {
+    background: #0b1220;
+    color: #e5e7eb;
+    padding: 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .content pre code { background: transparent; color: inherit; padding: 0; font-size: 12px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 8px 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  table th {
+    background: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    color: #475569;
+    font-weight: 700;
+  }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+  blockquote {
+    border-left: 3px solid #0f3d77;
+    padding: 6px 14px;
+    color: #475569;
+    background: #f1f5f9;
+    border-radius: 6px;
+    margin: 12px 0;
+  }
+  strong { color: #0f172a; }
+  footer { margin-top: 28px; text-align: center; color: #94a3b8; font-size: 11px; }
+  @media print {
+    body { background: white; padding: 10mm; }
+    header.hero { box-shadow: none; }
+    .content { border: none; padding: 0; }
+    @page { size: A4 portrait; margin: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">ISO 9001 Clause 8 · ISO 27001 A.5.9, A.7.14, A.8.10</div>
+    <h1>Device Handling — Full-Circle Process</h1>
+    <div class="meta">QMS-PROC-010 · v1.0 · 2026-04-24</div>
+  </header>
+  <div class="content">
+<h1>Device Handling — Full-Circle Process</h1>
+<p><strong>Document ID:</strong> QMS-PROC-010</p>
+<p><strong>Version:</strong> 1.0</p>
+<p><strong>Effective:</strong> 2026-04-24</p>
+<p><strong>Owner:</strong> Mike Andersen (Operations)</p>
+<p><strong>Next review:</strong> 2026-10-24 or upon significant change</p>
+<p><strong>Classification:</strong> Internal</p>
+<p><strong>Standard alignment:</strong> ISO/IEC 27001:2022 (A.5.9, A.5.28, A.7.10, A.7.14, A.8.10) · ISO 9001:2015 Clause 8 (Operation)</p>
+<hr />
+<h2>1. Purpose</h2>
+<p>This process describes the end-to-end handling of a customer device from initial collection request to final disposition and reporting. It is the master operational flow that the more detailed procedures (Device Reception, Data Erasure, Diagnostics & QC, Shipping & Logistics) sit beneath.</p>
+<h2>2. Scope</h2>
+<p>All customer devices received into Scandic IT's Tarmvej 8 facility for ITAD handling — including laptops, desktops, mobile phones, servers, and storage media — regardless of customer type or engagement model.</p>
+<h2>3. Roles</h2>
+<table>
+<thead><tr>
+<th>Role</th>
+<th>Responsibility</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Operations lead (Mike)</strong></td>
+<td>End-to-end accountability for the process; sign-off on final disposition reports</td>
+</tr>
+<tr>
+<td><strong>Warehouse technician</strong></td>
+<td>Physical handling, intake, erasure, destruction; chain-of-custody signing</td>
+</tr>
+<tr>
+<td><strong>Quality technician</strong></td>
+<td>Diagnostics, grading; second set of eyes on erasure certificates</td>
+</tr>
+<tr>
+<td><strong>Management rep (Kasper)</strong></td>
+<td>Commercial interface with customer; onboarding new customers into the flow</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Process flow</h2>
+<pre><code>┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+│  1. Request   │→ │  2. Pickup    │→ │  3. Transit   │→ │  4. Receipt   │
+└───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
+        ↓                                                        ↓
+┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+│ 12. Archive   │← │ 11. Reporting │← │ 10. Disposition│← │  5. Intake    │
+└───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
+                                                                 ↓
+                   ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+                   │ 9. Destruction│← │ 8. Erasure    │← │ 6-7. Diagnost │
+                   │ (if required) │  │               │  │   + Grading   │
+                   └───────────────┘  └───────────────┘  └───────────────┘</code></pre>
+<h3>Step 1 — Collection request</h3>
+<ul>
+<li>Customer raises request via email, phone, or direct contact with account manager</li>
+<li>Request captured internally (subject, volume estimate, device types, pickup address, urgency)</li>
+<li>Operations confirms feasibility and quotes timing</li>
+<li><strong>Output:</strong> request logged; commercial confirmation sent to customer</li>
+</ul>
+<h3>Step 2 — Pickup scheduling</h3>
+<ul>
+<li>Carrier (DHL or customer-specified) booked</li>
+<li>Pickup date confirmed with customer</li>
+<li>Sealed containers / packaging guidance sent to customer if required</li>
+<li>Chain-of-custody form issued (if used for the engagement)</li>
+<li><strong>Output:</strong> booking reference, scheduled pickup date</li>
+</ul>
+<h3>Step 3 — Transit</h3>
+<ul>
+<li>Carrier collects from customer site</li>
+<li>Shipping insurance per carrier terms; high-value consignments insured additionally</li>
+<li>Tracking number captured; status monitored</li>
+<li><strong>Output:</strong> tracking reference, ETA to Scandic IT</li>
+</ul>
+<h3>Step 4 — Receipt at warehouse</h3>
+<ul>
+<li>Delivery received at Tarmvej 8</li>
+<li>External inspection of packaging for damage or tampering</li>
+<li>Count verified against customer's declared quantity</li>
+<li>Discrepancies flagged and communicated to customer within same business day</li>
+<li><strong>Refers to:</strong> Device Reception Procedure</li>
+<li><strong>Output:</strong> receipt confirmation, discrepancy note if any</li>
+</ul>
+<h3>Step 5 — Intake & registration</h3>
+<ul>
+<li>Each device logged individually</li>
+<li>Serial number, model, visible condition captured</li>
+<li>Devices assigned to job/batch in tracking system</li>
+<li>Chain-of-custody transfer recorded (carrier → Scandic IT)</li>
+<li>Status: <em>Received</em> → workflow begins</li>
+<li><strong>Output:</strong> per-device intake record, job batch created</li>
+</ul>
+<h3>Step 6 — Diagnostics</h3>
+<ul>
+<li>Device powered on (if safe and applicable)</li>
+<li>Aiken/Piceasoft diagnostic run</li>
+<li>Hardware health captured (boot, disk SMART, memory, battery if laptop)</li>
+<li><strong>Refers to:</strong> Diagnostics & Quality Control Procedure</li>
+<li><strong>Output:</strong> diagnostic report per device</li>
+</ul>
+<h3>Step 7 — Grading</h3>
+<ul>
+<li>Device assigned grade A / B / C / D based on:</li>
+<li>Cosmetic condition</li>
+<li>Functional condition per diagnostics</li>
+<li>Age and serviceability</li>
+<li>Grade determines disposition path (refurbish / resell / recycle)</li>
+<li><strong>Output:</strong> grade assigned, disposition path chosen</li>
+</ul>
+<h3>Step 8 — Data erasure</h3>
+<ul>
+<li>Device booted from Certus PXE server on isolated erasure VLAN</li>
+<li>Erasure performed to <strong>NIST SP 800-88 Rev 2</strong> and <strong>IEEE 2883-2022</strong> aligned standards</li>
+<li>Certificate generated per device (PDF, serial-matched)</li>
+<li>Erasure verified by quality technician before sign-off</li>
+<li><strong>Refers to:</strong> Data Erasure Procedure</li>
+<li><strong>Output:</strong> erasure certificate per device, stored in Certus portal and exported to customer record</li>
+</ul>
+<h3>Step 9 — Physical destruction (if erasure fails or customer requires it)</h3>
+<ul>
+<li>OMS900 shredder used for HDDs/SSDs</li>
+<li>Destruction record logged (date, serial, technician)</li>
+<li>Recycling partner (Stena / El-Recycling) collects shredded material</li>
+<li><strong>Output:</strong> destruction certificate, chain transferred to recycler</li>
+</ul>
+<h3>Step 10 — Disposition</h3>
+<ul>
+<li>Based on grade and contractual terms:</li>
+<li><strong>A/B grade + refurb scope:</strong> prepare for resale or customer redeployment</li>
+<li><strong>C/D grade:</strong> recycle via Stena / El-Recycling</li>
+<li><strong>Customer-return:</strong> package and ship back per agreement</li>
+<li>Status updated in tracking system</li>
+<li><strong>Output:</strong> disposition confirmation per device</li>
+</ul>
+<h3>Step 11 — Reporting & certificate delivery</h3>
+<ul>
+<li>Summary report generated per job:</li>
+<li>Devices processed, per-device certificates, disposition outcomes</li>
+<li>Resale value (if applicable) and revenue-share breakdown</li>
+<li>Delivered to customer via email and/or portal</li>
+<li><strong>Output:</strong> customer-facing report + individual erasure/destruction certificates</li>
+</ul>
+<h3>Step 12 — Archive & close</h3>
+<ul>
+<li>All records retained per Data Classification Policy retention requirements</li>
+<li>Certus portal retains per-device certificates (long-term retention)</li>
+<li>Chain-of-custody, commercial, and processing records archived in M365 per document control</li>
+<li>Job closed; feedback loop to Customer Satisfaction cycle (see §6)</li>
+<li><strong>Output:</strong> closed job, records archived</li>
+</ul>
+<h2>5. Records generated (Cellar layer)</h2>
+<table>
+<thead><tr>
+<th>Record</th>
+<th>Generated at step</th>
+<th>Retained in</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Collection request log</td>
+<td>1</td>
+<td>Internal workflow system</td>
+</tr>
+<tr>
+<td>Carrier booking and tracking</td>
+<td>2-3</td>
+<td>Internal workflow + carrier system</td>
+</tr>
+<tr>
+<td>Chain-of-custody handover</td>
+<td>4-5, 9</td>
+<td>Physical signed form + M365</td>
+</tr>
+<tr>
+<td>Intake record (per device)</td>
+<td>5</td>
+<td>Workflow + Asset Inventory (customer-device category)</td>
+</tr>
+<tr>
+<td>Diagnostic report</td>
+<td>6</td>
+<td>Aiken/Piceasoft</td>
+</tr>
+<tr>
+<td>Grade assignment</td>
+<td>7</td>
+<td>Workflow</td>
+</tr>
+<tr>
+<td>Erasure certificate</td>
+<td>8</td>
+<td>Certus portal</td>
+</tr>
+<tr>
+<td>Destruction record</td>
+<td>9</td>
+<td>Workflow + OMS900 log</td>
+</tr>
+<tr>
+<td>Disposition record</td>
+<td>10</td>
+<td>Workflow</td>
+</tr>
+<tr>
+<td>Customer job report</td>
+<td>11</td>
+<td>M365 + sent to customer</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Customer feedback and continual improvement</h2>
+<ul>
+<li>Customer satisfaction survey sent <strong>annually</strong> (updated from quarterly in response to Stage 1 audit 2026-04-24)</li>
+<li>Feedback captured and reviewed at Management Review</li>
+<li>Any non-conformity raised in the job flow tracked via the Corrective Action Procedure</li>
+<li><strong>Refers to:</strong> Customer Satisfaction Procedure, Corrective Action Procedure</li>
+</ul>
+<h2>7. Cross-references</h2>
+<ul>
+<li><strong>Policies:</strong> Acceptable Use Policy, Asset Management Policy, Data Classification Policy, Physical Security Policy, Access Control Policy</li>
+<li><strong>Procedures:</strong> Device Reception, Data Erasure, Diagnostics & Quality Control, Shipping & Logistics</li>
+<li><strong>Records:</strong> Asset Inventory (customer-devices-in-processing category), Corrective Action Log</li>
+</ul>
+<h2>8. Approval</h2>
+<table>
+<thead><tr>
+<th>Role</th>
+<th>Name</th>
+<th>Signature</th>
+<th>Date</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Operations Owner</td>
+<td>Mike Andersen</td>
+<td>______________________</td>
+<td>2026-04-24</td>
+</tr>
+<tr>
+<td>Management Representative</td>
+<td>Kasper Horn</td>
+<td>______________________</td>
+<td>2026-04-24</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Change log</h2>
+<table>
+<thead><tr>
+<th>Version</th>
+<th>Date</th>
+<th>Changes</th>
+<th>Responsible</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2026-04-24</td>
+<td>Initial document; created during Stage 1 audit to close Floor 2 (Processes) gap</td>
+<td>Mike Andersen</td>
+</tr>
+</tbody>
+</table>
+  </div>
+  <footer>Prepared 2026-04-24 · Scandic IT ApS ISMS/QMS documentation</footer>
+</div>
+</body>
+</html>

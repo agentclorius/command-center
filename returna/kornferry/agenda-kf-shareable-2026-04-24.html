@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kornferry × RDT (on Returna) — Contract Mechanics</title>
+<style>
+  :root {
+    --bg: #f7f7f4;
+    --card: #ffffff;
+    --ink: #0b1220;
+    --ink-soft: #4b5563;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #0f3d77;
+    --accent-soft: #e7f0ff;
+    --warn: #a85e00;
+    --warn-soft: #fff4e0;
+    --danger: #b91c1c;
+    --danger-soft: #fee2e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 28px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #0b1220 0%, #0f3d77 100%);
+    color: white;
+    padding: 40px 32px;
+    border-radius: 22px;
+    margin-bottom: 28px;
+    box-shadow: 0 12px 40px -20px rgba(11, 18, 32, 0.4);
+  }
+  header.hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  header.hero h1 {
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  header.hero .meta {
+    color: #cbd5e1;
+    font-size: 14px;
+  }
+  header.hero .story {
+    margin-top: 22px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #eaf0fb;
+  }
+  header.hero .story b { color: white; }
+  header.hero .punchline {
+    margin-top: 14px;
+    font-style: italic;
+    color: #bfdbfe;
+    border-left: 2px solid #60a5fa;
+    padding-left: 12px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 0 0 28px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+  }
+  .dot.d { background: #111827; }
+  .dot.new { background: var(--accent); }
+
+  section.group {
+    margin-bottom: 22px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .card h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .card ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card li {
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 22px;
+    position: relative;
+    color: var(--ink);
+  }
+  .card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+  }
+  .card li.d::before { background: #111827; }
+  .card li.new::before { background: var(--accent); }
+  .card li b { color: var(--ink); font-weight: 600; }
+  .card li .muted { color: var(--ink-soft); }
+
+  .wide {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-top: 6px;
+  }
+  .wide h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .qlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .qlist li {
+    font-size: 14px;
+    padding: 14px 16px;
+    background: #fafafa;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .qlist li b { display: block; margin-bottom: 6px; color: var(--ink); }
+  .qlist li span { color: var(--ink-soft); }
+
+  .bring {
+    background: var(--accent-soft);
+    border: 1px solid #b6d4ff;
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-top: 22px;
+  }
+  .bring h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .bring ol {
+    margin: 0;
+    padding-left: 22px;
+  }
+  .bring li {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .internal {
+    margin-top: 44px;
+    background: var(--warn-soft);
+    border: 2px dashed #e1b27a;
+    border-radius: 18px;
+    padding: 22px 26px;
+  }
+  .internal h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--warn);
+    margin: 0 0 14px;
+  }
+  .internal .warn {
+    background: white;
+    border: 1px solid #f3d8a6;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--warn);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .internal h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 18px 0 8px;
+    color: var(--ink);
+  }
+  .internal p, .internal li { font-size: 14px; line-height: 1.55; }
+  .internal ol, .internal ul { padding-left: 22px; margin: 0 0 10px; }
+  .internal strong { color: var(--ink); }
+
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media print {
+    body { background: white; }
+    header.hero { box-shadow: none; }
+    .card, .wide, .bring, .internal { break-inside: avoid; }
+    .internal { border-style: solid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Contract mechanics — shared overview for Kornferry</div>
+    <h1>Kornferry × RDT <span style="opacity: 0.6; font-weight: 400;">on the Returna platform</span></h1>
+    <div class="meta">Prepared 2026-04-23 · management discussion 2026-04-24</div>
+
+    <div class="story">
+      <p style="margin:0 0 10px;"><b>The structure in one paragraph:</b> Kornferry contracts with <b>RDT</b> — already their trusted office-ITAD partner, ISO 27001-certified. RDT is the invoicing entity and the name on the SOW. KF uses the <b>Returna platform</b> from day 1 — portal, reporting, ITSM integration, multi-region orchestration — with Returna named as a sub-processor in the DPA.</p>
+      <p style="margin:0 0 10px;"><b>Physical execution by region:</b> <b>UK → RDT's own facility</b>. <b>EU, NA, APAC, LATAM → verified Return Hubs</b> in the Returna network. Each Hub operates under its own certifications for its region; RDT's ISO anchors the contractual chain.</p>
+      <p style="margin:0 0 10px;"><b>Phase 2 (at renewal, planned):</b> once Returna is ISO 27001 certified, the contract can be moved from RDT to Returna. <b>RDT's role shifts to ambassador</b> — relationship maintainer, rev share, introducer for future deals. KF will be able to use more platform features once invoiced directly through Returna.</p>
+      <div class="punchline">“You contract with RDT. You use Returna. Physical work is done by the right local Hub in each region.”</div>
+    </div>
+  </header>
+
+  <div class="legend">
+    <span class="pill"><span class="dot d"></span> From the existing draft</span>
+    <span class="pill"><span class="dot new"></span> Suggested addition</span>
+  </div>
+
+  <section class="group">
+    <div class="grid">
+
+      <div class="card">
+        <h2>1 · Contract structure</h2>
+        <ul>
+          <li class="d">Contract based on RFP; SOW signed by both parties</li>
+          <li class="d">15-month minimum term: 12-month lock-in + 3-month notice (RDT ROI)</li>
+          <li class="d">If KF doesn't cancel, yearly review 3 months before renewal — SOW + pricing adjustment</li>
+          <li class="d">SLA penalties in place</li>
+          <li class="d">Formal change request process</li>
+          <li class="new"><b>Contracting entity</b> — which KF entity signs, which RDT entity signs</li>
+          <li class="new"><b>Governing law</b> — EU seat vs UK vs neutral</li>
+          <li class="new"><b>Right-to-publicise</b> — logo use / case study / reference</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>2 · Commercial model</h2>
+        <ul>
+          <li class="d">60-day payment terms</li>
+          <li class="d">Minimum spend commitment over 15 months</li>
+          <li class="new"><b>Pricing structure</b> — service fee, per-device rate, volume tiers</li>
+          <li class="new"><b>Currency & FX</b> — EUR / GBP / USD, who bears FX risk</li>
+          <li class="new"><b>Resale revenue share</b> — split across KF, RDT, marketplace</li>
+          <li class="new"><b>Billing cadence</b> — monthly vs quarterly; late-payment interest</li>
+          <li class="new"><b>True-up model</b> — over/under minimum mechanics</li>
+          <li class="new"><b>Termination economics</b> — early exit fee schedule</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>3 · Scope</h2>
+        <ul>
+          <li class="new"><b>Device categories</b> — laptops ✓; confirm desktops / mobiles / monitors / servers / peripherals</li>
+          <li class="new"><b>Geographic coverage</b> — UK via RDT; EU, NA / APAC / LATAM via verified Return Hubs in the Returna network</li>
+          <li class="new"><b>Services in scope</b> — deployment, returns, in-life swap, image refresh, disposal, erasure cert, refurb+resell, redeployment</li>
+          <li class="new"><b>Out-of-scope</b> — consumables, desk phones, anything KF handles elsewhere</li>
+          <li class="new"><b>Volume forecast</b> — devices/month by region; seasonality</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4 · SLA matrix</h2>
+        <ul>
+          <li class="new"><b>Deployment SLA</b> — KF order → laptop in user's hands (by region)</li>
+          <li class="new"><b>Return / pickup SLA</b> — ticket raised → collection scheduled</li>
+          <li class="new"><b>Processing SLA</b> — receipt → erasure + disposition</li>
+          <li class="new"><b>Certificate SLA</b> — cert produced within N business days</li>
+          <li class="new"><b>Exception SLA</b> — hold times for damaged / missing devices</li>
+          <li class="new"><b>Reporting SLA</b> — monthly by day N, quarterly by day N</li>
+          <li class="new"><b>Penalty mechanics</b> — service credits % vs liquidated damages; cap per quarter</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5 · Operational governance</h2>
+        <ul>
+          <li class="d">Operational + service quarterly reviews</li>
+          <li class="new"><b>Onboarding plan</b> — 30/60/90 day milestones, named contacts both sides</li>
+          <li class="new"><b>Monthly operational call</b> — volumes, exceptions, roadmap</li>
+          <li class="new"><b>Quarterly business review</b> — KPIs, strategic direction, pricing</li>
+          <li class="new"><b>Annual executive sponsor meeting</b> — commercial / renewal</li>
+          <li class="new"><b>Tooling & reporting portal</b> — Returna platform (ticketing, asset register, status, certificates, reporting)</li>
+          <li class="new"><b>Escalation path</b> — operator / manager / exec on both sides</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>6 · Technical &amp; integration</h2>
+        <ul>
+          <li class="d">RDT permissions in KF's Intune environment</li>
+          <li class="d">Image available upfront with RDT</li>
+          <li class="d">Test plan understanding KF requirement</li>
+          <li class="new"><b>Intune / Autopilot enrolment</b> — RDT on behalf of KF; Azure AD scope, least-privilege</li>
+          <li class="new"><b>ITSM integration</b> — KF ITSM ↔ Returna platform ticketing</li>
+          <li class="new"><b>Image governance</b> — owner, versioning, update cadence, sign-off</li>
+          <li class="new"><b>Encryption verification</b> — every returned device's state confirmed &amp; logged</li>
+          <li class="new"><b>Data wipe cert</b> — aligned to NIST SP 800-88 Rev 2 and IEEE 2883-2022; PDF + API; serial-matched</li>
+          <li class="new"><b>Asset tag standard</b> — barcoding, cross-ref to KF's register</li>
+          <li class="new"><b>API / webhook</b> — Returna endpoints via RDT contract</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>7 · Data protection &amp; compliance</h2>
+        <ul>
+          <li class="new"><b>DPA</b> — GDPR + UK GDPR; KF controller, RDT processor</li>
+          <li class="new"><b>Sub-processor list</b> — Returna (platform) + verified Return Hubs active at contract start + carriers + erasure SW + any remarketing partners; substitution-flexibility clause for Hubs of equivalent certification</li>
+          <li class="new"><b>In-region processing by design</b> — Returna routes devices to Hubs within their region (EU stays in EU, UK in UK). UK ↔ EU covered by mutual adequacy. SCCs / IDTA / DPF in the DPA as a safety net for exceptional flows only</li>
+          <li class="new"><b>Security certifications</b> — RDT's <b>ISO 27001</b> anchors the contract; every verified Hub holds region-appropriate certifications under Returna's vetting standard; Returna ISO in progress (relevant at phase 2); erasure aligned to NIST SP 800-88 Rev 2 and IEEE 2883-2022</li>
+          <li class="new"><b>Breach notification</b> — 24h target, 72h max; named contacts, template</li>
+          <li class="new"><b>Audit rights</b> — annual + on-request; SOC 2 Type II may satisfy in lieu</li>
+          <li class="new"><b>Personnel vetting</b> — background checks + NDA flow-down to facility staff</li>
+          <li class="new"><b>Record retention</b> — certificates retained N years, retrievable</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>8 · Risk, insurance &amp; liability</h2>
+        <ul>
+          <li class="d">Insurance cover for goods and warehouses</li>
+          <li class="d">Optional transit insurance for high-value items</li>
+          <li class="new"><b>Insurance limits &amp; certificates</b> — public liability, product, PI, cyber — KF's min limits</li>
+          <li class="new"><b>Liability cap</b> — typical 12-month fees; carve-outs for data breach / IP / gross negligence</li>
+          <li class="new"><b>Indemnification</b> — third-party claims, breach, IP, personal injury</li>
+          <li class="new"><b>Title &amp; risk transfer</b> — device title across KF / RDT / buyer</li>
+          <li class="new"><b>Business continuity</b> — RDT site outage: backup capacity, RTO</li>
+          <li class="new"><b>Force majeure</b> — scope, notification, mitigation</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>9 · Exit strategy</h2>
+        <ul>
+          <li class="d">EU+UK zone → RDT: new + used equipment to RDT warehouse</li>
+          <li class="d">Used equipment: inbound checklist to ensure laptop is working correctly</li>
+          <li class="new"><b>Transition period</b> — 60/90/120 days post-termination at BAU pricing</li>
+          <li class="new"><b>Handover deliverables</b> — final asset register, certs, images, history, open tickets, residual inventory</li>
+          <li class="new"><b>Return of KF data</b> — within N days; secure deletion</li>
+          <li class="new"><b>Data / devices in-flight</b> — what happens mid-transit, mid-processing, mid-resale</li>
+          <li class="new"><b>Residual stock</b> — KF-owned inventory: return or dispose</li>
+          <li class="new"><b>Onward IP</b> — KF keeps image/data/register; RDT keeps platform/tooling</li>
+          <li class="new"><b>Non-solicit</b> — staff hiring limits for a period</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="wide">
+    <h2>Likely KF questions to prepare for</h2>
+    <ul class="qlist">
+      <li><b>"Who actually touches our laptops?"</b><span>RDT warehouse, named site, vetted staff.</span></li>
+      <li><b>"What happens if RDT's site goes down?"</b><span>Backup capacity, BCP, alternate processing.</span></li>
+      <li><b>"How do we know the data is gone?"</b><span>Cert aligned to NIST SP 800-88 Rev 2 and IEEE 2883-2022, serial-matched, API-retrievable.</span></li>
+      <li><b>"Can we audit?"</b><span>Annual + on reasonable notice; SOC 2 Type II available.</span></li>
+      <li><b>"What's my exit?"</b><span>3-month notice after month 12, clear handover deliverables.</span></li>
+      <li><b>"What am I locking into for 15 months?"</b><span>Min spend, change request mechanism if scope shifts.</span></li>
+      <li><b>"Who's responsible if a device is lost?"</b><span>Insurance, liability cap, breach process.</span></li>
+      <li><b>"Can we extend beyond EU+UK?"</b><span>Yes — Returna orchestrates additional Hubs under the same framework.</span></li>
+      <li><b>"Who's the Hub in each region?"</b><span>UK → RDT. EU / NA / APAC / LATAM → verified Return Hubs in the Returna network, each operating under region-appropriate certifications.</span></li>
+      <li><b>"What does my portal look like day-to-day?"</b><span>Demo of the Returna platform — ticketing, asset register, certs, reporting.</span></li>
+      <li><b>"How much resale value comes back?"</b><span>Split model, transparency on proceeds.</span></li>
+      <li><b>"Why RDT contract but Returna tools?"</b><span>RDT has ISO &amp; existing relationship. Returna is named sub-processor. Each Hub operates under its own certifications. Migration to Returna-as-prime available at renewal once Returna is ISO-certified.</span></li>
+    </ul>
+  </div>
+
+  <div class="bring">
+    <h2>Materials to bring to the meeting</h2>
+    <ol>
+      <li><b>One-page pricing summary</b> — service fee + per-device + min spend, on a single sheet</li>
+      <li><b>RDT facility fact-sheet</b> — ISO 27001 scope, capacity, employees, physical security</li>
+      <li><b>Sample data destruction certificate</b> — show them the artefact</li>
+      <li><b>Sample monthly operational report</b> — show them the visibility they'll get</li>
+      <li><b>Draft SOW table of contents</b> — not the full SOW, just headings so nothing's missed</li>
+    </ol>
+  </div>
+
+  
+
+  <footer>
+    Source file: <code>returna/kornferry/agenda-enriched-2026-04-23.md</code> · KF-shareable version
+  </footer>
+
+</div>
+</body>
+</html>

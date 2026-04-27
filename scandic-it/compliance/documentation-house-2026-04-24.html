@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scandic IT — Documentation Hierarchy (Management System as a House)</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 20px;
+    line-height: 1.5;
+  }
+  .page { max-width: 1180px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  header .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    color: #0f3d77;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  header h1 {
+    font-size: 26px;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  header .sub {
+    font-size: 13px;
+    color: #475569;
+    margin: 0;
+  }
+
+  .house {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  /* Roof — triangle with label */
+  .roof {
+    width: 100%;
+    background: linear-gradient(180deg, #0f3d77 0%, #1e3a8a 100%);
+    color: white;
+    position: relative;
+    padding: 28px 24px 22px;
+    clip-path: polygon(10% 100%, 50% 0, 90% 100%);
+    text-align: center;
+    padding-top: 30px;
+  }
+  .roof .tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #bfdbfe;
+  }
+  .roof h2 {
+    font-size: 18px;
+    margin: 0 0 4px;
+  }
+  .roof .caption {
+    font-size: 11px;
+    color: #cbd5e1;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .floor {
+    width: 100%;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-bottom: none;
+    padding: 18px 28px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  .floor:first-of-type { border-top: 1px solid #cbd5e1; }
+  .floor.cellar {
+    border-bottom: 1px solid #cbd5e1;
+    border-radius: 0 0 10px 10px;
+    background: #fffbeb;
+  }
+  .floor.attic { background: #eff6ff; }
+  .floor.f3 { background: #ecfeff; }
+  .floor.f2 { background: #f0fdf4; }
+  .floor.f1 { background: #f5f3ff; }
+
+  .floor .meta .label-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .floor .meta .floor-num {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #0f3d77;
+    background: rgba(15, 61, 119, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .floor .meta h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #0f172a;
+  }
+  .floor .meta .caption {
+    font-size: 12px;
+    color: #475569;
+    margin: 6px 0 0;
+  }
+
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .chip {
+    display: inline-block;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #0f172a;
+  }
+  .chip.new {
+    background: #fefce8;
+    border-color: #facc15;
+    color: #713f12;
+    font-weight: 600;
+  }
+  .chip.thin {
+    background: transparent;
+    border: 1px dashed #cbd5e1;
+    color: #94a3b8;
+    font-style: italic;
+  }
+
+  .connector {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    max-width: 820px;
+    margin: 18px auto 0;
+    background: #eef2ff;
+    border: 1px dashed #c7d2fe;
+    border-radius: 10px;
+    padding: 10px 16px;
+  }
+
+  .legend {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    font-size: 12px;
+    color: #475569;
+  }
+  .legend .chip.new, .legend .chip.thin, .legend .chip { font-size: 11px; }
+
+  footer {
+    margin-top: 24px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+  }
+
+  @media (max-width: 840px) {
+    .floor { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  @media print {
+    body { background: white; padding: 8mm; }
+    .floor { break-inside: avoid; }
+    @page { size: A4 portrait; margin: 8mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">ISMS + QMS documentation hierarchy — Scandic IT ApS</div>
+    <h1>The Management System as a House</h1>
+    <p class="sub">How our 50+ documents map to the six-layer management-system model · Prepared 2026-04-24 in response to Stage 1 audit feedback</p>
+  </header>
+
+  <div class="house">
+
+    <!-- ROOF -->
+    <div class="roof">
+      <div class="tag">🏠 Roof</div>
+      <h2>Policies</h2>
+      <div class="caption">Top-level policies that protect the business and set the framework for our work — just as a roof shelters a house from weather.</div>
+    </div>
+
+    <!-- Policy chips below roof -->
+    <div class="floor" style="background:#dbeafe;border-radius:10px 10px 0 0;">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Roof</span><h3>Policies (9)</h3></div>
+        <p class="caption">High-level statements of intent approved by management.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Information Security Policy (ISMS)</span>
+        <span class="chip">Quality Management System Policy</span>
+        <span class="chip">Acceptable Use Policy</span>
+        <span class="chip">Asset Management Policy</span>
+        <span class="chip">Data Classification Policy</span>
+        <span class="chip">HR Security Policy</span>
+        <span class="chip">Physical Security Policy</span>
+        <span class="chip">Access Control Policy</span>
+        <span class="chip">Supplier &amp; Third-Party Security Policy</span>
+      </div>
+    </div>
+
+    <!-- ATTIC -->
+    <div class="floor attic">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Attic</span><h3>Governing documents (8)</h3></div>
+        <p class="caption">Management's strategic decisions and direction — context, scope, and standard-specific roadmaps.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Statement of Applicability (SoA)</span>
+        <span class="chip">QMS Manual</span>
+        <span class="chip">Risk Assessment Methodology</span>
+        <span class="chip new">Interested Parties Register ⭐ new</span>
+        <span class="chip new">Scope Diagram ⭐ new</span>
+        <span class="chip">Gap Analysis (27001 &amp; 9001)</span>
+        <span class="chip">Pre-Certification Checklist</span>
+        <span class="chip">Scandic IT Company Facts</span>
+      </div>
+    </div>
+
+    <!-- FLOOR 3 — GUIDELINES -->
+    <div class="floor f3">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Floor 3</span><h3>Guidelines (thin)</h3></div>
+        <p class="caption">Bridge between policy and practice — concretize ISO clauses into working rules. Currently thin; adding 1-2 is a recommended improvement.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Auditor Handover Note (navigation guideline)</span>
+        <span class="chip">Evidence Index — April 2026</span>
+        <span class="chip thin">Erasure standards guideline (NIST SP 800-88 Rev 2 / IEEE 2883-2022) — candidate to formalize</span>
+        <span class="chip thin">Data handling guideline — candidate to formalize</span>
+      </div>
+    </div>
+
+    <!-- FLOOR 2 — PROCESSES -->
+    <div class="floor f2">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Floor 2</span><h3>Processes (4)</h3></div>
+        <p class="caption">Overarching workflows — the map that shows how we create value.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Device Reception Procedure</span>
+        <span class="chip">Data Erasure Procedure</span>
+        <span class="chip">Diagnostics &amp; Quality Control Procedure</span>
+        <span class="chip">Shipping &amp; Logistics Procedure</span>
+      </div>
+    </div>
+
+    <!-- FLOOR 1 — PROCEDURES / ROUTINES -->
+    <div class="floor f1">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Floor 1</span><h3>Procedures &amp; Routines (14)</h3></div>
+        <p class="caption">Detailed instructions for how we perform specific work tasks in daily operations — the "how-to" layer.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Document Control Procedure (ISMS)</span>
+        <span class="chip">Document Control Procedure (QMS)</span>
+        <span class="chip">Internal Audit Procedure (ISMS)</span>
+        <span class="chip">Internal Audit Procedure (QMS)</span>
+        <span class="chip">Management Review Procedure</span>
+        <span class="chip">Corrective Action Procedure</span>
+        <span class="chip">Non-Conformity &amp; Corrective Action Procedure (QMS)</span>
+        <span class="chip">Customer Satisfaction Procedure</span>
+        <span class="chip">Supplier Evaluation Procedure</span>
+        <span class="chip">Competence &amp; Training Procedure</span>
+        <span class="chip">Offboarding Checklist</span>
+        <span class="chip">Internal Audit Checklist (Apr 2026)</span>
+        <span class="chip">Incident Response Plan</span>
+        <span class="chip">Business Continuity Plan</span>
+      </div>
+    </div>
+
+    <!-- CELLAR — RECORDS -->
+    <div class="floor cellar">
+      <div class="meta">
+        <div class="label-row"><span class="floor-num">🏠 Cellar</span><h3>Records &amp; Evidence (17)</h3></div>
+        <p class="caption">Proof of execution — logs, reports, reviews, and registers. Records always flow from an existing procedure.</p>
+      </div>
+      <div class="docs">
+        <span class="chip">Internal Audit Report — April 2026</span>
+        <span class="chip">Management Review Minutes — April 2026</span>
+        <span class="chip">Corrective Action Log — 2026</span>
+        <span class="chip">Montes Confirmation Record — April 2026</span>
+        <span class="chip">BCP Tabletop Record — April 2026</span>
+        <span class="chip">Security Awareness Training Record</span>
+        <span class="chip">Training Attendance Record</span>
+        <span class="chip">Security Awareness Quiz Record</span>
+        <span class="chip">Competence &amp; Training Record — April 2026</span>
+        <span class="chip">NDA Record — Freelance Bookkeeper</span>
+        <span class="chip">Supplier Evaluation Record — April 2026</span>
+        <span class="chip">QMS KPI Dashboard</span>
+        <span class="chip">Equipment Maintenance Log</span>
+        <span class="chip">Asset Inventory</span>
+        <span class="chip">Network Diagram</span>
+        <span class="chip">Compliance Status Overview</span>
+        <span class="chip">Risk Register (per risk: inherent vs residual)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <b>Connection rule:</b> records (cellar) always flow from an existing procedure (floor 1). Every evidence artifact traces back to a procedure; every procedure implements a process; every process enacts a policy. This is the audit trail from strategic intent to concrete evidence.
+  </div>
+
+  <div class="legend">
+    <span class="chip">Existing document</span>
+    <span class="chip new">⭐ new — added today</span>
+    <span class="chip thin">candidate to formalize</span>
+  </div>
+
+  <footer>
+    Total documents mapped: 52 existing + 2 added today (scope diagram, Interested Parties Register) + 2 candidate guidelines to consider formalizing. Structure aligns with the 6-layer management-system house model referenced in the Stage 1 audit.
+  </footer>
+</div>
+</body>
+</html>

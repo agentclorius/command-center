@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scandic IT ApS — ISMS / QMS Scope</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 20px;
+  }
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  header .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: #0f3d77;
+    font-weight: 600;
+  }
+  header h1 {
+    font-size: 24px;
+    margin: 6px 0 4px;
+    letter-spacing: -0.01em;
+  }
+  header .meta {
+    color: #64748b;
+    font-size: 13px;
+  }
+
+  .frame {
+    position: relative;
+    padding: 130px 40px 130px;
+  }
+
+  /* External interfaces (positioned around the box) */
+  .ext {
+    position: absolute;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 12px;
+    width: 210px;
+    box-shadow: 0 6px 18px -10px rgba(15, 23, 42, 0.2);
+  }
+  .ext .label {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    font-weight: 700;
+    color: #0f3d77;
+    margin-bottom: 6px;
+  }
+  .ext ul {
+    margin: 0;
+    padding-left: 14px;
+    color: #334155;
+  }
+  .ext li { line-height: 1.4; }
+
+  .ext.top-left    { top: 0;    left: 0; }
+  .ext.top-right   { top: 0;    right: 0; }
+  .ext.mid-left    { top: 50%;  left: 0;   transform: translateY(-50%); }
+  .ext.mid-right   { top: 50%;  right: 0;  transform: translateY(-50%); }
+  .ext.bot-left    { bottom: 0; left: 0; }
+  .ext.bot-right   { bottom: 0; right: 0; }
+
+  /* Central in-scope box */
+  .core {
+    position: relative;
+    margin: 0 240px;
+    background: linear-gradient(135deg, #0b1220 0%, #0f3d77 100%);
+    border-radius: 22px;
+    padding: 32px 28px 28px;
+    color: white;
+    box-shadow: 0 18px 48px -22px rgba(15, 61, 119, 0.45);
+  }
+  .core .title-block {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .core .title-block .stamp {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+    font-weight: 700;
+    color: #bfdbfe;
+    margin-bottom: 8px;
+  }
+  .core h2 {
+    margin: 0 0 2px;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .core .subtitle {
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+  .core .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .core .cell {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  .core .cell .label {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    font-weight: 700;
+    color: #93c5fd;
+    margin-bottom: 6px;
+  }
+  .core .cell ul {
+    margin: 0;
+    padding-left: 14px;
+    color: #e5e7eb;
+  }
+  .core .cell li { line-height: 1.4; }
+
+  .excl {
+    margin-top: 24px;
+    background: #fef3c7;
+    border: 1px solid #f3d58a;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #78350f;
+  }
+  .excl .label {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #92400e;
+  }
+
+  .arrows-note {
+    text-align: center;
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 14px;
+  }
+
+  footer {
+    margin-top: 18px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+  }
+
+  @media (max-width: 900px) {
+    .frame { padding: 24px 0; }
+    .ext { position: static; width: auto; margin-bottom: 12px; transform: none; }
+    .core { margin: 0; }
+  }
+
+  @media print {
+    body { background: white; padding: 10mm; }
+    .core { box-shadow: none; }
+    @page { size: A4 landscape; margin: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">ISMS / QMS scope diagram — ISO 27001:2022 &amp; ISO 9001:2015</div>
+    <h1>Scandic IT ApS — Scope of the Management System</h1>
+    <div class="meta">CVR 32342396 · Tarmvej 8, 9220 Aalborg Ø, Denmark · Prepared 2026-04-24</div>
+  </header>
+
+  <div class="frame">
+
+    <div class="ext top-left">
+      <div class="label">Customers</div>
+      <ul>
+        <li>Devices &amp; customer data received for processing</li>
+        <li>Return of refurbished or certified-erased devices</li>
+      </ul>
+    </div>
+
+    <div class="ext top-right">
+      <div class="label">Suppliers &amp; Sub-processors</div>
+      <ul>
+        <li>Montes — MSP (M365, endpoint)</li>
+        <li>Certus — erasure software</li>
+        <li>Piceasoft — diagnostics</li>
+        <li>Danløn — payroll</li>
+      </ul>
+    </div>
+
+    <div class="ext mid-left">
+      <div class="label">Carriers &amp; Logistics</div>
+      <ul>
+        <li>DHL and other partner carriers</li>
+        <li>Shipping insurance &amp; chain of custody</li>
+      </ul>
+    </div>
+
+    <div class="ext mid-right">
+      <div class="label">Recyclers</div>
+      <ul>
+        <li>Stena Recycling</li>
+        <li>El-Recycling</li>
+      </ul>
+    </div>
+
+    <div class="ext bot-left">
+      <div class="label">Regulators &amp; Authorities</div>
+      <ul>
+        <li>Datatilsynet (GDPR)</li>
+        <li>Certification body</li>
+        <li>Industry bodies</li>
+      </ul>
+    </div>
+
+    <div class="ext bot-right">
+      <div class="label">Interested Parties</div>
+      <ul>
+        <li>Management &amp; owners</li>
+        <li>Employees</li>
+        <li>Customers &amp; partners</li>
+      </ul>
+    </div>
+
+    <div class="core">
+      <div class="title-block">
+        <div class="stamp">Inside the scope — Scandic IT ApS</div>
+        <h2>Everything below is covered by the Management System</h2>
+        <div class="subtitle">All activities, people, and assets of the company at the Tarmvej 8 facility</div>
+      </div>
+
+      <div class="grid">
+
+        <div class="cell">
+          <div class="label">People</div>
+          <ul>
+            <li>All employees (full + part-time)</li>
+            <li>Freelance bookkeeper (under NDA)</li>
+            <li>Management (Mike, Kasper)</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="label">Physical location</div>
+          <ul>
+            <li>Tarmvej 8, 9220 Aalborg Ø</li>
+            <li>Office + processing depot</li>
+            <li>Biometric access, CCTV, steel fencing</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="label">Operational activities</div>
+          <ul>
+            <li>Secure data erasure (Certus)</li>
+            <li>Diagnostics &amp; grading (Piceasoft)</li>
+            <li>Refurbishment &amp; redeployment</li>
+            <li>Physical destruction (OMS900)</li>
+            <li>Chain of custody &amp; logistics</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="label">Information assets</div>
+          <ul>
+            <li>Customer device data</li>
+            <li>Erasure certificates</li>
+            <li>Diagnostic reports</li>
+            <li>Customer contracts</li>
+            <li>Financial &amp; employee data</li>
+            <li>System credentials (1Password)</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="label">Technical infrastructure</div>
+          <ul>
+            <li>Closed erasure VLAN</li>
+            <li>PXE servers (Certus, Aiken)</li>
+            <li>Workstations, network (Ubiquiti)</li>
+            <li>M365 tenant (via Montes)</li>
+            <li>1Password Teams</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="label">Supporting processes</div>
+          <ul>
+            <li>Risk management</li>
+            <li>Document &amp; record control</li>
+            <li>Internal audit &amp; management review</li>
+            <li>Training &amp; awareness</li>
+            <li>Incident &amp; business continuity</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="excl">
+        <div class="label">Excluded from scope</div>
+        Internal software development (we use commercial SaaS only · justification in SoA for A.8.4 / A.8.25-A.8.31). Activities outside the Aalborg facility. Separate legal entities (e.g. Returna ApS) outside the Scandic IT corporate boundary.
+      </div>
+    </div>
+
+    <div class="arrows-note">
+      Arrows of information, devices, and data flow between the core (inside scope) and the external parties (outside scope). Every interface is governed by contracts, DPAs, or chain-of-custody records where applicable.
+    </div>
+
+  </div>
+
+  <footer>
+    Companion scope statement is maintained in the Statement of Applicability, ISMS Policy, and QMS Manual. This diagram is a visual aid, not the authoritative source.
+  </footer>
+
+</div>
+</body>
+</html>

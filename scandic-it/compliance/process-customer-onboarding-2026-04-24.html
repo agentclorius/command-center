@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customer Onboarding Process</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  .page { max-width: 960px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0b1220 0%, #0f3d77 100%);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 40px -20px rgba(11, 18, 32, 0.4);
+  }
+  header.hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    color: #93c5fd;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  header.hero h1 {
+    font-size: 24px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  header.hero .meta {
+    color: #cbd5e1;
+    font-size: 13px;
+  }
+  .content {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px 32px;
+  }
+  .content h1 { font-size: 22px; margin-top: 28px; color: #0f3d77; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+  .content h1:first-child { margin-top: 0; }
+  .content h2 { font-size: 17px; margin-top: 22px; color: #0f3d77; }
+  .content h3 { font-size: 14px; margin-top: 18px; color: #334155; text-transform: uppercase; letter-spacing: 0.05em; }
+  .content p, .content li { font-size: 14px; color: #334155; }
+  .content code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .content pre {
+    background: #0b1220;
+    color: #e5e7eb;
+    padding: 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .content pre code { background: transparent; color: inherit; padding: 0; font-size: 12px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 8px 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  table th {
+    background: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    color: #475569;
+    font-weight: 700;
+  }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+  blockquote {
+    border-left: 3px solid #0f3d77;
+    padding: 6px 14px;
+    color: #475569;
+    background: #f1f5f9;
+    border-radius: 6px;
+    margin: 12px 0;
+  }
+  strong { color: #0f172a; }
+  footer { margin-top: 28px; text-align: center; color: #94a3b8; font-size: 11px; }
+  @media print {
+    body { background: white; padding: 10mm; }
+    header.hero { box-shadow: none; }
+    .content { border: none; padding: 0; }
+    @page { size: A4 portrait; margin: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">ISO 9001 Clause 8.2 · ISO 27001 A.5.19, A.5.31, A.5.34</div>
+    <h1>Customer Onboarding Process</h1>
+    <div class="meta">QMS-PROC-011 · v1.0 · 2026-04-24</div>
+  </header>
+  <div class="content">
+<h1>Customer Onboarding Process</h1>
+<p><strong>Document ID:</strong> QMS-PROC-011</p>
+<p><strong>Version:</strong> 1.0</p>
+<p><strong>Effective:</strong> 2026-04-24</p>
+<p><strong>Owner:</strong> Kasper Horn (Commercial)</p>
+<p><strong>Next review:</strong> 2026-10-24 or upon significant change</p>
+<p><strong>Classification:</strong> Internal</p>
+<p><strong>Standard alignment:</strong> ISO 9001:2015 Clause 8.2 (Requirements for products and services) · ISO/IEC 27001:2022 (A.5.19, A.5.20, A.5.31, A.5.34)</p>
+<hr />
+<h2>1. Purpose</h2>
+<p>This process describes how a new customer is evaluated, contracted, and brought into live service at Scandic IT. It ensures that every customer engagement starts with clear commercial, legal, and operational foundations — and that information security and data protection requirements are agreed up front.</p>
+<h2>2. Scope</h2>
+<p>All new customers engaging Scandic IT for ITAD services, from first qualified enquiry to first completed collection.</p>
+<h2>3. Roles</h2>
+<table>
+<thead><tr>
+<th>Role</th>
+<th>Responsibility</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Management Rep (Kasper)</strong></td>
+<td>Commercial lead; contract owner; customer-facing point of escalation</td>
+</tr>
+<tr>
+<td><strong>Operations lead (Mike)</strong></td>
+<td>Operational feasibility assessment; scope validation</td>
+</tr>
+<tr>
+<td><strong>ISMS Owner (Mike)</strong></td>
+<td>Approval of DPA and security requirements</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Process flow</h2>
+<h3>Step 1 — Qualified enquiry</h3>
+<ul>
+<li>Enquiry captured (email, referral, direct)</li>
+<li>Initial needs: device types, expected volume, geographic scope, urgency</li>
+<li>Go/no-go decision based on fit with Scandic IT's scope and capacity</li>
+<li><strong>Output:</strong> qualified lead record</li>
+</ul>
+<h3>Step 2 — Commercial scoping</h3>
+<ul>
+<li>Discovery conversation on: volumes, cadence, device mix, disposition preferences (resell / recycle / return)</li>
+<li>Special requirements identified: customer-specific erasure standards, reporting format, ITSM integration</li>
+<li><strong>Output:</strong> initial scope and pricing offer</li>
+</ul>
+<h3>Step 3 — Due diligence (both ways)</h3>
+<ul>
+<li>Scandic IT's compliance evidence shared: ISO 27001 status, certifications, insurance certificates, relevant policies in their light / shareable version (full policies only after NDA)</li>
+<li>Customer's security questionnaire completed if requested</li>
+<li>Customer's own compliance position reviewed (especially for data-subject protection)</li>
+<li><strong>Output:</strong> exchanged compliance evidence</li>
+</ul>
+<h3>Step 4 — NDA</h3>
+<ul>
+<li>Mutual NDA signed before exchanging full policies or sensitive operational detail</li>
+<li>NDA record retained per Data Classification Policy</li>
+<li><strong>Output:</strong> signed NDA</li>
+</ul>
+<h3>Step 5 — Master services agreement / customer cooperation agreement</h3>
+<ul>
+<li>Commercial contract signed covering scope, SLAs, pricing, term, termination, liability, insurance</li>
+<li>Template maintained by Kasper; legal review on material deviations</li>
+<li><strong>Output:</strong> signed MSA</li>
+</ul>
+<h3>Step 6 — Data Processing Agreement (DPA)</h3>
+<ul>
+<li>DPA signed if the engagement involves personal data (almost always for ITAD)</li>
+<li>Sub-processor list disclosed (Montes, Certus, Piceasoft, carriers, recyclers)</li>
+<li>International transfer mechanisms covered (SCCs / UK IDTA / DPF as needed)</li>
+<li><strong>Refers to:</strong> Supplier & Third-Party Security Policy</li>
+<li><strong>Output:</strong> signed DPA</li>
+</ul>
+<h3>Step 7 — SOW / engagement setup</h3>
+<ul>
+<li>Statement of Work signed covering specific activities, pricing schedule, start date</li>
+<li>Account setup: primary POC, invoicing details, ITSM integration if applicable</li>
+<li>Customer portal access provisioned (if applicable)</li>
+<li><strong>Output:</strong> signed SOW, account configured</li>
+</ul>
+<h3>Step 8 — Operational handoff</h3>
+<ul>
+<li>Kickoff call with customer, operations, and account manager</li>
+<li>First pickup scheduled</li>
+<li>Chain-of-custody form and packaging guidance shared</li>
+<li>Customer briefed on reporting format and cadence</li>
+<li><strong>Refers to:</strong> Device Handling — Full-Circle Process</li>
+<li><strong>Output:</strong> operational readiness confirmation</li>
+</ul>
+<h3>Step 9 — First collection</h3>
+<ul>
+<li>Executed per the Device Handling process</li>
+<li>First job reviewed end-to-end by operations lead</li>
+<li>First customer report reviewed by Kasper before dispatch</li>
+<li><strong>Output:</strong> first completed job + customer report</li>
+</ul>
+<h3>Step 10 — Customer confirmation & live status</h3>
+<ul>
+<li>Customer confirms satisfaction with first engagement</li>
+<li>Any refinements applied (reporting format, cadence, specific handling)</li>
+<li>Customer moves to "live" status in commercial system</li>
+<li>First annual customer satisfaction survey scheduled (updated from quarterly in response to Stage 1 audit 2026-04-24)</li>
+<li><strong>Output:</strong> customer marked live; ongoing service cycle begins</li>
+</ul>
+<h2>5. Records generated</h2>
+<table>
+<thead><tr>
+<th>Record</th>
+<th>Step</th>
+<th>Retained in</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Qualified lead record</td>
+<td>1</td>
+<td>Commercial system</td>
+</tr>
+<tr>
+<td>Scope & pricing offer</td>
+<td>2</td>
+<td>M365 + commercial system</td>
+</tr>
+<tr>
+<td>Shared compliance evidence</td>
+<td>3</td>
+<td>M365</td>
+</tr>
+<tr>
+<td>Signed NDA</td>
+<td>4</td>
+<td>M365 (NDA register)</td>
+</tr>
+<tr>
+<td>Signed MSA</td>
+<td>5</td>
+<td>M365 (contracts register)</td>
+</tr>
+<tr>
+<td>Signed DPA</td>
+<td>6</td>
+<td>M365 (DPA register)</td>
+</tr>
+<tr>
+<td>Signed SOW</td>
+<td>7</td>
+<td>M365 (contracts register)</td>
+</tr>
+<tr>
+<td>Kickoff minutes</td>
+<td>8</td>
+<td>M365</td>
+</tr>
+<tr>
+<td>First job records</td>
+<td>9</td>
+<td>Per Device Handling process</td>
+</tr>
+<tr>
+<td>Live-status confirmation</td>
+<td>10</td>
+<td>Commercial system</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Policy awareness during onboarding</h2>
+<p>Before any customer-facing staff start work on the account, they must acknowledge:</p>
+<ul>
+<li>Applicable policies (Acceptable Use, Data Classification, Physical Security, Access Control)</li>
+<li>The specific customer's DPA sub-processor constraints</li>
+<li>Any special data-handling requirements</li>
+</ul>
+<p>Awareness recorded per Security Awareness Training Record.</p>
+<h2>7. Cross-references</h2>
+<ul>
+<li><strong>Policies:</strong> Acceptable Use, Data Classification, Supplier & Third-Party Security</li>
+<li><strong>Procedures:</strong> Device Handling Full-Circle, Customer Satisfaction, Supplier Evaluation (for carriers brought on per customer), Corrective Action</li>
+<li><strong>Records:</strong> NDA Register, DPA Register, Contracts Register, Customer Satisfaction Records</li>
+</ul>
+<h2>8. Approval</h2>
+<table>
+<thead><tr>
+<th>Role</th>
+<th>Name</th>
+<th>Signature</th>
+<th>Date</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Management Representative</td>
+<td>Kasper Horn</td>
+<td>______________________</td>
+<td>2026-04-24</td>
+</tr>
+<tr>
+<td>Operations Owner</td>
+<td>Mike Andersen</td>
+<td>______________________</td>
+<td>2026-04-24</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Change log</h2>
+<table>
+<thead><tr>
+<th>Version</th>
+<th>Date</th>
+<th>Changes</th>
+<th>Responsible</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2026-04-24</td>
+<td>Initial document; created during Stage 1 audit</td>
+<td>Kasper Horn</td>
+</tr>
+</tbody>
+</table>
+  </div>
+  <footer>Prepared 2026-04-24 · Scandic IT ApS ISMS/QMS documentation</footer>
+</div>
+</body>
+</html>
